@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 3195963487301144726}
   - component: {fileID: 3195963487301144725}
   - component: {fileID: 3195963487301144729}
-  - component: {fileID: 9018100639122202311}
   - component: {fileID: 4762594210215652210}
   - component: {fileID: 6527228072078544907}
   - component: {fileID: 2122968271183003055}
   - component: {fileID: 6062064129374195117}
+  - component: {fileID: 1024957327}
   m_Layer: 9
   m_Name: EnemyTurretLeftShoot
   m_TagString: Untagged
@@ -163,20 +163,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &9018100639122202311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3195963487301144723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af49404a5c46ea94a9b83722c6ea2da0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 5
-  _explosionFx: {fileID: 1559039454114822766, guid: 9079916657313e244aa1bfc4d54e013b, type: 3}
 --- !u!114 &4762594210215652210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,10 +194,10 @@ MonoBehaviour:
   _capacity: 4
   _currentShootPoint: {fileID: 2958402199611114974}
   _projectilePrefab: {fileID: 8940426276466058518, guid: daedefc04b46641e283e890b4f809df8, type: 3}
-  _projectileSpeed: 6
+  _projectileSpeed: 14
   _damage: 1
   _detector: {fileID: 6062064129374195117}
-  _shootPauseDuration: 1
+  _shootPauseDuration: 0.5
   _shootFX: {fileID: 3534455051524469498}
   _shootFXRenderer: {fileID: 3534455051524469499}
   _shootDirection: -1
@@ -239,7 +225,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.151076, y: 0.7926613}
+  m_Size: {x: 3.45, y: 0.7926613}
   m_EdgeRadius: 0
 --- !u!114 &6062064129374195117
 MonoBehaviour:
@@ -253,6 +239,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69784360ca394ddbb1b8703c27db164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1024957327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3195963487301144723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27146c415c3dcf84faa9f584d1353f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 8
+  _deathFx: {fileID: 1559039454114822766, guid: 9079916657313e244aa1bfc4d54e013b, type: 3}
 --- !u!1 &3418103223077284610
 GameObject:
   m_ObjectHideFlags: 0
