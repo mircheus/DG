@@ -21,12 +21,6 @@ public class PlayerShooting : MonoBehaviour
 
     public event UnityAction Shooted;
     
-    // удалить как появится новый репозиторий в гите 
-    private void Start()
-    {
-        // Initialize(_projectilePrefab, _projectileSpeed, _damage);
-        
-    }
 
     private void Update()
     {

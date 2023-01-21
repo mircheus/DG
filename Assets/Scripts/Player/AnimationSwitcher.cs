@@ -49,7 +49,7 @@ public class AnimationSwitcher : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        Time.timeScale = 0.5f;
+        // Time.timeScale = 0.5f;
     }
     
     private void Update()

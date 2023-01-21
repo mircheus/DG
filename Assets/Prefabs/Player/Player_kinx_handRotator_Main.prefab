@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4746834698557505035}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.1, z: 0}
+  m_LocalPosition: {x: 0, y: -0.008, z: 0}
   m_LocalScale: {x: 0.2281282, y: 0.200816, z: 0.200816}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.12, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,7 +56,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.42458802, y: 1}
+  m_Size: {x: 1.48, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &4746834699006843771
 GameObject:
@@ -305,7 +305,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 20
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 041f56d6a022446e8b09e8a5be7f79ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -330,7 +330,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.038516164, y: -0.10633868}
+  m_Offset: {x: 0.012820333, y: -0.10633868}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -341,7 +341,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.24745274, y: 0.46155298}
+  m_Size: {x: 0.11897391, y: 0.46155298}
   m_EdgeRadius: 0
 --- !u!50 &7575618301205707857
 Rigidbody2D:
@@ -405,15 +405,15 @@ MonoBehaviour:
   _groundChecker: {fileID: 1300236917264164666}
   _circleRadius: 0.2
   _jumpForce: 15
-  _airLinearDrag: 3
+  _airLinearDrag: 2
   _fallMultiplier: 7
   _lowJumpFallMultiplier: 5
   _wallCheckerCollider: {fileID: 4031409440606532589}
   _offsetVector: {x: 0.5, y: 0}
-  _wallSlidingSpeed: 0
-  _xWallForce: 20
+  _wallSlidingSpeed: 0.5
+  _xWallForce: 18
   _yWallForce: 15
-  _wallJumpTime: 0.2
+  _wallJumpTime: 0.15
   _groundContactFilter:
     useTriggers: 1
     useLayerMask: 1
@@ -428,7 +428,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  _jumpStatterForce: 10
+  _jumpStatterForce: 20
   _player: {fileID: 4746834699155818247}
   _isTouchingWall: 0
   _wallSliding: 0
@@ -469,6 +469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleProjectile: {fileID: 7932160528248861039}
+  _cameraImpulse: {fileID: 0}
 --- !u!114 &7487286890378862009
 MonoBehaviour:
   m_ObjectHideFlags: 0

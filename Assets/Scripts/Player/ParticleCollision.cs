@@ -22,15 +22,8 @@ public class ParticleCollision : MonoBehaviour
         int numCollisionEvents = _particleSystem.GetCollisionEvents(other, collisionEvents);
         
         GameObject explosion = Instantiate(_explosionPrefab, collisionEvents[0].intersection, Quaternion.identity);
-        
-        // ParticleSystem particleSystem = explosion.GetComponent<ParticleSystem>();
-        // var pmain = particleSystem.main;
 
-        if (other.gameObject.TryGetComponent(out Enemy enemy))
-        {
-            enemy.TakeDamage(1);
-        }
-        // camera.GetComponent<CinemachineImpulseSource>().GenerateImpulse();
+        
 
         // if (other.GetComponent<Rigidbody2D>() != null)
         //     other.GetComponent<Rigidbody2D>().AddForceAtPosition(collisionEvents[0].intersection * 100 - transform.position, collisionEvents[0].intersection + Vector3.up);

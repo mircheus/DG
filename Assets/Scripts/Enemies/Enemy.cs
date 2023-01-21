@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private int _health;
     // [SerializeField] private ParticleSystem _hitFX;
-    [SerializeField] private GameObject _explosionFx;
+    [SerializeField] private GameObject _explosionFx; // используется в 
     // [SerializeField] private EnemyPatrol _enemyPatrol;
     
     private FlashEffect _damageFx;
@@ -21,7 +21,6 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         _damageFx = GetComponent<FlashEffect>();
-        // _enemyPatrol = GetComponentInParent<EnemyPatrol>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
     }
@@ -30,7 +29,6 @@ public class Enemy : MonoBehaviour
     {
         _health -= damage;
         _damageFx.Blink();
-        // _animator.SetTrigger("Hurt");
         Damaged?.Invoke();
 
         if (_health == 0)
