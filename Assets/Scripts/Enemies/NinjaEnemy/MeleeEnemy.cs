@@ -14,20 +14,21 @@ public class MeleeEnemy : MonoBehaviour
     [SerializeField] private int _damage;
     [SerializeField] private BoxCollider2D _boxCollider;
     [SerializeField] private LayerMask _playerLayer;
-
+    [SerializeField] private Ninja _enemy;
+    
     private Player _player;
     private float _cooldownTimer = Mathf.Infinity;
     private Vector2 _colliderOffset;
     private Animator _animator;
     private EnemyPatrol _enemyPatrol;
     private bool _isAlive = true;
-    private Enemy _enemy; // чтобы подписаться на событие 
+    // private Enemy _enemy; // чтобы подписаться на событие 
 
     private void OnEnable()
     {
         _enemy.Died += OnDied;
     }
-
+    
     private void OnDisable()
     {
         _enemy.Died -= OnDied;
@@ -36,7 +37,6 @@ public class MeleeEnemy : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _enemyPatrol = GetComponentInParent<EnemyPatrol>();
-        _enemy = GetComponent<Enemy>();
     }
     
     private void Update()
@@ -67,9 +67,10 @@ public class MeleeEnemy : MonoBehaviour
 
     private void OnDied()
     {
-        _animator.SetBool("Die",true);
+        // _animator.SetBool("Die",true);
         _isAlive = false;
-        Debug.Log("Died");
+        Debug.Log("OnDied triggered");
+        // Debug.Log("Died");
     }
 
     private void ChasePlayer()

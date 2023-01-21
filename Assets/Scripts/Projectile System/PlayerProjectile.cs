@@ -15,7 +15,7 @@ public class PlayerProjectile : Projectile
     {   
         base.OnCollisionEnter2D(col);
         
-        if (col.gameObject.TryGetComponent(out Enemy enemy))
+        if (col.gameObject.TryGetComponent(out Enemy_old enemy))
         {
             enemy.TakeDamage(_damage);
             ReturnToPool();

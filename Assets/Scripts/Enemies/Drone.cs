@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : Enemy
+public class Drone : Enemy
 {
     [SerializeField] private GameObject _deathFx;
 

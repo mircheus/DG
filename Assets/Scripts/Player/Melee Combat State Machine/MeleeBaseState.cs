@@ -86,7 +86,7 @@ public class MeleeBaseState : State
                     // GameObject.Instantiate(_hitEffectPrefab, collidersToDamage[i].transform);
                     
                     // _hitFXParticles.Play();
-                    collidersToDamage[i].GetComponent<Enemy>().TakeDamage(1);
+                    collidersToDamage[i].GetComponent<Enemy_old>().TakeDamage(1);
                     Debug.Log("Enemy Has Taken:" + _attackIndex + "Damage");
                     _collidersDamaged.Add(collidersToDamage[i]);
                 }

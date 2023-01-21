@@ -1,47 +1,44 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(FlashEffect))]
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private int _health;
-    // [SerializeField] private ParticleSystem _hitFX;
-    [SerializeField] private GameObject _explosionFx; // используется в 
-    // [SerializeField] private EnemyPatrol _enemyPatrol;
-    
-    private FlashEffect _damageFx;
-    private Rigidbody2D _rigidbody;
-    private Animator _animator;
-    public event UnityAction Damaged;
+    [SerializeField] protected int _maxHealth;
+
+    protected FlashEffect _damageFx;
+    protected int _currentHealth;
     public event UnityAction Died;
-    
-    private void Start()
+
+    protected virtual void Start()
     {
         _damageFx = GetComponent<FlashEffect>();
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
+        _currentHealth = _maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    protected virtual void TakeDamage(int damage)
     {
-        _health -= damage;
+        _currentHealth -= damage;
         _damageFx.Blink();
-        Damaged?.Invoke();
 
-        if (_health == 0)
+        if (_currentHealth == 0)
         {
             Die();
         }
     }
+    
+    protected void OnParticleCollision(GameObject other)
+    {
+        TakeDamage(1);
+        // Debug.Log("Collision from enemy draft");
+    }
 
-    private void Die()
+    protected virtual void Die()
     {
         Died?.Invoke();
-        _rigidbody.simulated = false;
-        Instantiate(_explosionFx, transform.position, quaternion.identity);
-        Destroy(gameObject); // вместо дестроя должен возвращаться в objectPool
+        // Debug.Log("Died event invoked");
     }
 }

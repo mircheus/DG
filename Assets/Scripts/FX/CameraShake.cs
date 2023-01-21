@@ -8,19 +8,19 @@ using Random = UnityEngine.Random;
 public class CameraShake : MonoBehaviour
 {
     [SerializeField] private PlayerShooting _player;
-    [SerializeField] private Enemy _enemy;
+    [SerializeField] private Enemy_old enemyOld;
     [SerializeField] private float _shakeDuration = .15f;
     [SerializeField] private float _magnitude = .4f;
     
     private void OnEnable()
     {
-        _enemy.Damaged += ShakeCamera;
+        enemyOld.Damaged += ShakeCamera;
         _player.Shooted += ShakeCamera;
     }
 
     private void OnDisable()
     {
-        _enemy.Damaged -= ShakeCamera;
+        enemyOld.Damaged -= ShakeCamera;
         _player.Shooted -= ShakeCamera;
     }
 
