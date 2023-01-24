@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] protected int _maxHealth;
-    protected EnemyDisabler _enemyDisabler;
+    public EnemyDisabler _enemyDisabler;
 
     public event UnityAction Died;
     public event UnityAction Hitted;

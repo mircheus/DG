@@ -16,7 +16,6 @@ public class Drone : Enemy
     {
         base.Start();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        // _light = GetComponent<Light2D>();
         _enemyDroneShooting = GetComponent<EnemyDroneShooting>();
         _rigidbody = GetComponent<Rigidbody2D>();
     }
@@ -25,7 +24,6 @@ public class Drone : Enemy
         Instantiate(_deathFx, transform.position, Quaternion.identity); // заменить на вытащить из пула 
         _spriteRenderer.enabled = false;
         _light.intensity = 0;
-        // _enemyDroneShooting.enabled = false;
         _enemyDroneShooting.StopFiring();
         _rigidbody.simulated = false;
         base.Die();

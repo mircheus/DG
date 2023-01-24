@@ -6,17 +6,25 @@ using UnityEngine;
 public class Turret : Enemy
 {
     [SerializeField] private GameObject _deathFx;
-    // private SpriteRenderer _spriteRenderer;
+    
+    private SpriteRenderer _spriteRenderer;
+    private EnemyTurretShooting _enemyTurretShooting;
+    private Rigidbody2D _rigidbody;
 
-    private void Start()
+    protected override void Start()
     {
-        // _spriteRenderer = GetComponent<SpriteRenderer>();
+        base.Start();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _enemyTurretShooting = GetComponent<EnemyTurretShooting>();
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     protected override void Die()
     {
         Instantiate(_deathFx, transform.position, Quaternion.identity); // заменить на вытащить из пула 
-        // _spriteRenderer.gameObject.SetActive(false);
+        _spriteRenderer.enabled = false;
+        _enemyTurretShooting.StopFiring();
+        _rigidbody.simulated = false;
         base.Die();
     }
 }

@@ -24,6 +24,8 @@ public class EnemyTurretShooting : ProjectilePool
     [Range(-1, 1)] 
     [SerializeField] private int _shootDirection;
 
+    private bool _isFiring = true;
+    
     public event UnityAction Shooted;
 
     private void OnEnable()
@@ -49,7 +51,7 @@ public class EnemyTurretShooting : ProjectilePool
 
     private void ShootProjectile()
     {
-        if (TryGetProjectile(out Projectile projectile))
+        if (TryGetProjectile(out Projectile projectile) && _isFiring)
         {
             projectile.transform.position = _currentShootPoint.position;
             projectile.SetDirection(transform.right * _shootDirection);
@@ -69,5 +71,10 @@ public class EnemyTurretShooting : ProjectilePool
             ShootProjectile();
             yield return waitFor;
         }
+    }
+
+    public void StopFiring()
+    {
+        _isFiring = false;
     }
 }
