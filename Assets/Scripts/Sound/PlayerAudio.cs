@@ -57,6 +57,11 @@ public class PlayerAudio : MonoBehaviour
         _audioSource.PlayOneShot(_hitSound, _hitVolume);
     }
 
+    private void OnStepped()
+    {
+        _audioSource.PlayOneShot(_stepSound, _stepVolume);
+    }
+
     private void OnDied()
     {
         _audioSource.PlayOneShot(_dieSound, _dieVolume);
