@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     // WORKAROUND
     public event UnityAction WallJumped;
     public event UnityAction WallSliding;
+    public event UnityAction Jumped;
 
     [Header("Debug variables")] 
     [SerializeField] private List<RaycastHit2D> _raycastHit2Ds = new List<RaycastHit2D>();
@@ -172,6 +173,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0f);
         _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+        Jumped?.Invoke();
         // _animationSwitcher.ChangeAnimationState("Player_jump");
     }
 

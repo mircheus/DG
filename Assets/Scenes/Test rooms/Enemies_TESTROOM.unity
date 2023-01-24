@@ -101099,7 +101099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2225459797195951209, guid: f2374d70e146a1043b092338ca051ea5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2225459797195951214, guid: f2374d70e146a1043b092338ca051ea5, type: 3}
       propertyPath: m_RootOrder
@@ -101107,11 +101107,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2225459797195951214, guid: f2374d70e146a1043b092338ca051ea5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 97.5
+      value: 68.72
       objectReference: {fileID: 0}
     - target: {fileID: 2225459797195951214, guid: f2374d70e146a1043b092338ca051ea5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.5
+      value: 4.62
       objectReference: {fileID: 0}
     - target: {fileID: 2225459797195951214, guid: f2374d70e146a1043b092338ca051ea5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -101172,17 +101172,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 888585196}
     m_Modifications:
-    - target: {fileID: 2122968271183003055, guid: e217f276ba0a93f4694c00172eb0575d, type: 3}
-      propertyPath: m_Size.x
-      value: 3.45
-      objectReference: {fileID: 0}
     - target: {fileID: 3195963487301144723, guid: e217f276ba0a93f4694c00172eb0575d, type: 3}
       propertyPath: m_Name
       value: EnemyTurretLeftShoot (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3195963487301144723, guid: e217f276ba0a93f4694c00172eb0575d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3195963487301144728, guid: e217f276ba0a93f4694c00172eb0575d, type: 3}
       propertyPath: m_RootOrder
@@ -101190,11 +101182,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3195963487301144728, guid: e217f276ba0a93f4694c00172eb0575d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 65.43
+      value: 84.12
       objectReference: {fileID: 0}
     - target: {fileID: 3195963487301144728, guid: e217f276ba0a93f4694c00172eb0575d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.38
+      value: 8.96
       objectReference: {fileID: 0}
     - target: {fileID: 3195963487301144728, guid: e217f276ba0a93f4694c00172eb0575d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -101228,41 +101220,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 6527228072078544907, guid: e217f276ba0a93f4694c00172eb0575d, type: 3}
-      propertyPath: _projectileSpeed
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 6527228072078544907, guid: e217f276ba0a93f4694c00172eb0575d, type: 3}
-      propertyPath: _shootPauseDuration
-      value: 0.5
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9018100639122202311, guid: e217f276ba0a93f4694c00172eb0575d, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e217f276ba0a93f4694c00172eb0575d, type: 3}
 --- !u!4 &1024957325 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3195963487301144728, guid: e217f276ba0a93f4694c00172eb0575d, type: 3}
   m_PrefabInstance: {fileID: 1024957324}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1024957326 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3195963487301144723, guid: e217f276ba0a93f4694c00172eb0575d, type: 3}
-  m_PrefabInstance: {fileID: 1024957324}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1024957327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024957326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27146c415c3dcf84faa9f584d1353f2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 8
-  _deathFx: {fileID: 1559039454114822766, guid: 9079916657313e244aa1bfc4d54e013b, type: 3}
 --- !u!1001 &1079102068
 PrefabInstance:
   m_ObjectHideFlags: 0

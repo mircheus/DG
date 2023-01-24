@@ -12,13 +12,14 @@ public class ButtonClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [SerializeField] private Image _image;
     [SerializeField] private Sprite _default, _pressed, _selected;
     [SerializeField] private AudioClip _pressedClip;
+    [SerializeField] private AudioClip _highlightClip;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private RectTransform _rectTransform;
-
+    [SerializeField] private int _yOffset = 15;
+    
     private RectTransform x;
     private TextMeshProUGUI y;
-    private int _yOffset = 15;
-
+    
     public void OnPointerDown(PointerEventData eventData)
     {
         _image.sprite = _pressed;
@@ -35,6 +36,7 @@ public class ButtonClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         _image.sprite = _selected;
+        _audioSource.PlayOneShot(_highlightClip);
     }
 
     public void OnPointerExit(PointerEventData eventData)
