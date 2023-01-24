@@ -37,48 +37,22 @@ public class EnemyTurretShooting : ProjectilePool
     {
         Initialize(_projectilePrefab, _projectileSpeed, _damage);
     }
-
-    private void Update()
-    {
-        ShootProjectileManually();
-    }
-
+    
     private void OnPlayerDetected()
     {
         StopCoroutine(Firing());
         StartCoroutine(Firing());
-        // ShootProjectile();
     }
 
     private void ShootProjectile()
     {
         if (TryGetProjectile(out Projectile projectile))
         {
-            projectile.transform.position = _currentShootPoint.position; 
-            // Debug.Log($"position x:{projectile.transform.position.x} y:{projectile.transform.position.y}");
+            projectile.transform.position = _currentShootPoint.position;
             projectile.SetDirection(transform.right * _shootDirection);
-            // Debug.Log($"projectile speed: {projectile.Speed}");
-            // Debug.Log($"projectile current direction: x:{projectile.CurrentDirection.x} y:{projectile.CurrentDirection.y}");
             EnableObject(projectile);
             _shootFX.Play();
-            Debug.Log("Projectile activated");
         }
-    }
-
-    private void InstantiateProjectile()
-    {
-        Projectile projectile = Instantiate(_projectilePrefab, _currentShootPoint.position, Quaternion.identity);
-        // Debug.Log($"projectile shooted at position X:{_currentShootPoint.position.x} Y:{_currentShootPoint.position.y}");
-        projectile.SetDirection(Vector2.right * -1); 
-        projectile.Initialize(0, 0);
-    }
-
-    private void ShootProjectileManually()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ShootProjectile();
-        }   
     }
 
     private IEnumerator Firing()
@@ -89,7 +63,6 @@ public class EnemyTurretShooting : ProjectilePool
         while (i < 100)
         {
             ShootProjectile();
-            // Debug.Log("Fired");
             yield return waitFor;
         }
     }

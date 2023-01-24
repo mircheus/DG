@@ -8,15 +8,18 @@ using UnityEngine.Events;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] protected int _maxHealth;
+    protected EnemyDisabler _enemyDisabler;
 
+    public event UnityAction Died;
+    
     protected FlashEffect _damageFx;
     protected int _currentHealth;
-    public event UnityAction Died;
 
     protected virtual void Start()
     {
         _damageFx = GetComponent<FlashEffect>();
         _currentHealth = _maxHealth;
+        _enemyDisabler = GetComponentInParent<EnemyDisabler>();
     }
 
     protected virtual void TakeDamage(int damage)
@@ -33,12 +36,11 @@ public class Enemy : MonoBehaviour
     protected void OnParticleCollision(GameObject other)
     {
         TakeDamage(1);
-        // Debug.Log("Collision from enemy draft");
     }
 
     protected virtual void Die()
     {
         Died?.Invoke();
-        // Debug.Log("Died event invoked");
+        _enemyDisabler.DisableEnemy(this);
     }
 }

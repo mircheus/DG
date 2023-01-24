@@ -8,7 +8,7 @@ public class Drone : Enemy
 
     protected override void Die()
     {
-        base.Die();
         Instantiate(_deathFx, transform.position, Quaternion.identity); // заменить на вытащить из пула 
+        base.Die();
     }
 }

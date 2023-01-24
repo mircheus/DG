@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ProjectilePool : MonoBehaviour
 {
     [SerializeField] private GameObject _container;
     [SerializeField] private int _capacity;
 
+    public event UnityAction Died;
+    
     // попробуем очередь ради эксперимента 
     private Queue<Projectile> _pool = new Queue<Projectile>();
 
@@ -16,7 +19,6 @@ public class ProjectilePool : MonoBehaviour
         for (int i = 0; i < _capacity; i++)
         {
             Projectile spawned = Instantiate(prefab, _container.transform);
-            // spawned.Initialize(shootSystem, force, maxBounces); как в MagicLaser
             spawned.Initialize(speed, damage);
             spawned.gameObject.SetActive(false);
             _pool.Enqueue(spawned);
@@ -34,4 +36,7 @@ public class ProjectilePool : MonoBehaviour
     {
         projectile.gameObject.SetActive(true);
     }
+    
+    
+    
 }

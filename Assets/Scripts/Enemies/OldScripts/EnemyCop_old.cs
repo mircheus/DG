@@ -6,7 +6,7 @@ using UnityEngine;
 using Pathfinding;
 using Path = Pathfinding.Path;
 
-public class EnemyCop : MonoBehaviour
+public class EnemyCop_old : MonoBehaviour
 {
     [Header("Pathfinding")] 
     [SerializeField] private Transform _target;
