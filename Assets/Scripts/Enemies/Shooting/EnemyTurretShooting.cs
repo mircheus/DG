@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyTurretShooting : ProjectilePool
 {
@@ -22,6 +23,8 @@ public class EnemyTurretShooting : ProjectilePool
     // поля которые нужны только Turret
     [Range(-1, 1)] 
     [SerializeField] private int _shootDirection;
+
+    public event UnityAction Shooted;
 
     private void OnEnable()
     {
@@ -52,6 +55,7 @@ public class EnemyTurretShooting : ProjectilePool
             projectile.SetDirection(transform.right * _shootDirection);
             EnableObject(projectile);
             _shootFX.Play();
+            Shooted?.Invoke();
         }
     }
 

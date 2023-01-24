@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class NinjaAudo : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private AudioClip _swordAttackSound;
+    [SerializeField] private float _swordAttackVolume;
+    [SerializeField] private AudioClip _hitSound;
+    [SerializeField] private float _hitVolume;
+    [SerializeField] private AudioClip _deathSound;
+    [SerializeField] private float _deathVolume;
 }

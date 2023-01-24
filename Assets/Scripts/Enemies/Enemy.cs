@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     protected EnemyDisabler _enemyDisabler;
 
     public event UnityAction Died;
+    public event UnityAction Hitted;
     
     protected FlashEffect _damageFx;
     protected int _currentHealth;
@@ -26,6 +27,7 @@ public class Enemy : MonoBehaviour
     {
         _currentHealth -= damage;
         _damageFx.Blink();
+        Hitted?.Invoke();
 
         if (_currentHealth == 0)
         {
