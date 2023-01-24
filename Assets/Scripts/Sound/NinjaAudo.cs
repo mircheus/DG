@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class NinjaAudo : MonoBehaviour
 {
     [SerializeField] private AudioClip _swordAttackSound;
