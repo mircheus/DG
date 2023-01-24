@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Pathfinding;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
 
 public class EnemyDroneShooting : ProjectilePool
@@ -23,10 +24,13 @@ public class EnemyDroneShooting : ProjectilePool
     [SerializeField] private AIPath _aiPath;
     [SerializeField] private Light2D _alarmLight;
 
+    [Header("Debug")] [SerializeField] private Vector2 _lightplayerdirection;
+    public event UnityAction Shooted;
+    
     private Light _light;
-
     private Vector2 _shootDirection;
     private bool _isPlayerDetected = false;
+    private bool _isFiring = true;
     private void OnEnable()
     {
         _detector.PlayerDetected += OnPlayerDetected;
@@ -41,6 +45,11 @@ public class EnemyDroneShooting : ProjectilePool
     private void Start()
     {
         Initialize(_projectilePrefab, _projectileSpeed, _damage);
+    }
+
+    private void Update()
+    {
+        LightToPLayer();
     }
 
     private void OnPlayerDetected()
@@ -58,27 +67,34 @@ public class EnemyDroneShooting : ProjectilePool
 
     private void ShootProjectile()
     {
-        if (TryGetProjectile(out Projectile projectile))
+        if (TryGetProjectile(out Projectile projectile) && _isFiring)
         {
+            Shooted?.Invoke();
             projectile.transform.position = _currentShootPoint.position;
             projectile.SetDirection(GetDirectionToPlayer());
-            
-            // Vector3 playerDirection = (_player.transform.position - transform.position).normalized;
-            Vector3 playerDirection = -(_player.transform.position - transform.position).normalized;
-            // Vector3 playerDirection = (transform.position - _player.transform.position).normalized;
-            // Vector3 playerDirection = -(transform.position - _player.transform.position).normalized;
-            
-            float rotationZ = Mathf.Atan2(playerDirection.y, playerDirection.x) * Mathf.Rad2Deg;
-            
-            // _alarmLight.transform.localRotation = Quaternion.Euler(0f, 0f, rotationZ);
-            _alarmLight.transform.localRotation = Quaternion.Euler(0f, 0f, -rotationZ);
-
             _shootFX.Play();
             EnableObject(projectile);
         }
     }
-    
-    // private void SetFXRotation
+
+    private void LightToPLayer()
+    {
+        Vector2 playerDirection = _player.transform.position - transform.position;
+        _lightplayerdirection = playerDirection;
+        
+        if (playerDirection.x < 0)
+        {
+            _alarmLight.transform.localRotation = Quaternion.Euler(0f, 0f, 120f);
+        }
+        else if (playerDirection.x > 0)
+        {
+            _alarmLight.transform.localRotation = Quaternion.Euler(0f, 0f, 240f);
+        } 
+        else if (playerDirection.x == 0)
+        {
+            _alarmLight.transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
+        }
+    }
     
     private IEnumerator Firing()
     {
@@ -90,6 +106,11 @@ public class EnemyDroneShooting : ProjectilePool
             ShootProjectile();
             yield return waitFor;
         }
+    }
+
+    public void StopFiring()
+    {
+        _isFiring = false;
     }
 
     private Vector2 GetDirectionToPlayer()

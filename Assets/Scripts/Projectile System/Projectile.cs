@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviour
     {
         if (col.gameObject.TryGetComponent(out Ground ground))
         {
-            Debug.Log("Collided with ground");
+            // Debug.Log("Collided with ground");
             ReturnToPool();
         }
     }
