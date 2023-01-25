@@ -107,14 +107,15 @@ public class AnimationSwitcher : MonoBehaviour
     private void OnWallSlide()
     {
         _animator.SetBool(_isWallSliding, true);
-        _animator.SetBool(_isJumping, false);
         _animator.SetBool(_isWallJumping, false);
+        
+        _animator.SetBool(_isJumping, false);
     }
 
     private void OnWallJumped()
     {
-        _animator.SetBool(_isWallJumping, true);
         _animator.SetBool(_isWallSliding, false);
+        _animator.SetBool(_isWallJumping, true);
         TurnCharacter();
     }
     
@@ -124,6 +125,7 @@ public class AnimationSwitcher : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             _animator.SetTrigger(_isFiring);
+            // _animator.SetBool(_);
         }
     }
     
@@ -156,6 +158,7 @@ public class AnimationSwitcher : MonoBehaviour
         if (_playerController.IsPlayerGrounded)
         {
             _animator.SetBool(_isWallSliding, false);
+            _animator.SetBool(_isWallJumping, false);
         }
         
         return _playerController.IsPlayerGrounded;

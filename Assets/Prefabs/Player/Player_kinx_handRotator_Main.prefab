@@ -130,7 +130,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 2d51b776bd9d1a443ad9f4c92be7bb7f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -406,14 +406,14 @@ MonoBehaviour:
   _linearDrag: 12
   _groundChecker: {fileID: 1300236917264164666}
   _circleRadius: 0.2
-  _jumpForce: 15
+  _jumpForce: 16
   _airLinearDrag: 2
   _fallMultiplier: 7
   _lowJumpFallMultiplier: 5
   _wallCheckerCollider: {fileID: 4031409440606532589}
   _offsetVector: {x: 0.5, y: 0}
   _wallSlidingSpeed: 0.5
-  _xWallForce: 18
+  _xWallForce: 20
   _yWallForce: 15
   _wallJumpTime: 0.15
   _groundContactFilter:
