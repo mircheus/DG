@@ -6,31 +6,19 @@ using UnityEngine;
 
 public class FXPool : MonoBehaviour
 {
-    [SerializeField] private GameObject _container;
-    [SerializeField] private int _capacity;
-    [SerializeField] private ParticleCollision _particleCollision;
-    [SerializeField] private ParticleSystem _fx;
+    [SerializeField] protected GameObject _container;
+    [SerializeField] protected int _capacity;
+    [SerializeField] protected ParticleCollision _particleCollision;
+    [SerializeField] protected ParticleSystem _fx;
+
+    protected Queue<ParticleSystem> _pool;
     
-    private Queue<ParticleSystem> _pool;
-    // [SerializeField] private int _eachFxCount;
-    // [SerializeField] private Dictionary<string, ParticleSystem> _allFx;
-
-    private void OnEnable()
-    {
-        _particleCollision.ProjectileCollided += EnableFX;
-    }
-
-    private void OnDestroy()
-    {
-        _particleCollision.ProjectileCollided -= EnableFX;
-    }
-
     private void Start()
     {
         Initialize();
     }
 
-    private void Initialize()
+    protected void Initialize()
     {
         _pool = new Queue<ParticleSystem>();
         
@@ -44,13 +32,13 @@ public class FXPool : MonoBehaviour
         Debug.Log("FX pool initialized");
     }
 
-    private bool TryGetFX(out ParticleSystem fx)
+    protected bool TryGetFX(out ParticleSystem fx)
     {
         fx = _pool.FirstOrDefault(p => p.gameObject.activeSelf == false);
         return fx != null;
     }
 
-    public void EnableFX(Vector3 position)
+    protected void EnableFX(Vector3 position)
     {
         if (TryGetFX(out ParticleSystem fx))
         {

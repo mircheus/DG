@@ -108,11 +108,12 @@ public class AnimationSwitcher : MonoBehaviour
     {
         _animator.SetBool(_isWallSliding, true);
         _animator.SetBool(_isJumping, false);
+        _animator.SetBool(_isWallJumping, false);
     }
 
     private void OnWallJumped()
     {
-        _animator.SetTrigger(_isWallJumping);
+        _animator.SetBool(_isWallJumping, true);
         _animator.SetBool(_isWallSliding, false);
         TurnCharacter();
     }
