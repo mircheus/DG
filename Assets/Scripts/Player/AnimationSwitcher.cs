@@ -23,27 +23,26 @@ public class AnimationSwitcher : MonoBehaviour
     private int _isCrouching = Animator.StringToHash("isCrouching");
     private int _isGrounded = Animator.StringToHash("isGrounded");
     
+    // Walljump stuff
     private int _isWallSliding = Animator.StringToHash("isWallSliding");
-    private int _isWallJumpingTRIGGER = Animator.StringToHash("isWallJumpingTRIG");
-    private int _isWallSlidingBOOL = Animator.StringToHash("isWallSlidingBOOL");
-    private int _isWallJumpingBOOL = Animator.StringToHash("isWallJumping");
+    private int _isWallJumping = Animator.StringToHash("isWallJumping");
 
     private float _horizontalMovement;
     
     [Header("Debug variables")]
     [SerializeField] private float _zRotation;
 
-    // private void OnEnable()
-    // {
-    //     _playerController.WallJumped += OnWallJumped;
-    //     _playerController.WallSliding += OnWallSlide;
-    // }
+    private void OnEnable()
+    {
+        _playerController.WallJumped += OnWallJumped;
+        _playerController.WallSliding += OnWallSlide;
+    }
     //
-    // private void OnDisable()
-    // {
-    //     _playerController.WallJumped -= OnWallJumped;
-    //     _playerController.WallSliding -= OnWallSlide;
-    // }
+    private void OnDisable()
+    {
+        _playerController.WallJumped -= OnWallJumped;
+        _playerController.WallSliding -= OnWallSlide;
+    }
 
     private void Start()
     {
@@ -87,6 +86,7 @@ public class AnimationSwitcher : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _animator.SetBool(_isJumping, true);
+            // _animator.SetBool(_isWallSliding, false);
         }
     }
 
@@ -102,24 +102,20 @@ public class AnimationSwitcher : MonoBehaviour
             _animator.SetBool(_isCrouching, false);
         }
     }
+    
+    
+    private void OnWallSlide()
+    {
+        _animator.SetBool(_isWallSliding, true);
+        _animator.SetBool(_isJumping, false);
+    }
 
-    // private void OnWallJumped()
-    // {
-    //     _animator.SetTrigger(_isWallJumpingTRIGGER);
-    //     _animator.SetBool(_isJumping, true);
-    //     // _animator.SetBool(_isWallSlidingBOOL, false);
-    //     // _animator.SetBool(_isWallJumpingBOOL, true);
-    //     // Debug.Log("WallJumped");
-    // }
-    //
-    // private void OnWallSlide()
-    // {
-    //     _animator.SetTrigger(_isWallSliding);
-    //     _animator.SetBool(_isJumping, false);
-    //     // _animator.SetBool(_isWallSlidingBOOL, true);
-    //     // _animator.SetBool(_isWallJumpingBOOL, false);
-    //     // Debug.Log("WallSlide");
-    // }
+    private void OnWallJumped()
+    {
+        _animator.SetTrigger(_isWallJumping);
+        _animator.SetBool(_isWallSliding, false);
+        TurnCharacter();
+    }
     
     // используется в Kinx и Knightside
     private void Shoot()
@@ -129,11 +125,7 @@ public class AnimationSwitcher : MonoBehaviour
             _animator.SetTrigger(_isFiring);
         }
     }
-
-    private void TurnCharacter()
-    {
-        
-    }
+    
     
     private void TurnCharacterLeft()
     {
@@ -149,11 +141,22 @@ public class AnimationSwitcher : MonoBehaviour
         // Debug.Log($"x:{_handGunPosition.position.x} y:{_handGunPosition.position.y} z:{_handGunPosition.position.z}");
     }
 
+    private void TurnCharacter()
+    {
+        _spriteRenderer.flipX = !_spriteRenderer.flipX;
+    }
+
     private bool IsGrounded()
     {
         // bool isTouchingGround = Physics2D.OverlapCircle(_groundChecker.position, 0.3f, _groundLayer);
         // _animator.SetBool(_isGrounded, isTouchingGround);
         // Debug.Log(_playerController.IsPlayerGrounded);
+
+        if (_playerController.IsPlayerGrounded)
+        {
+            _animator.SetBool(_isWallSliding, false);
+        }
+        
         return _playerController.IsPlayerGrounded;
         // return Physics2D.OverlapCircle(_groundChecker.position, 0.3f, _groundLayer);
     }
