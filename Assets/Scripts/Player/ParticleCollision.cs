@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Cinemachine;
+using UnityEngine.Events;
 
 public class ParticleCollision : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class ParticleCollision : MonoBehaviour
     public List<ParticleCollisionEvent> collisionEvents;
     public CinemachineVirtualCamera camera;
     [SerializeField] private GameObject _explosionPrefab;
+
+    public event UnityAction<Vector3> ProjectileCollided;
 
     void Start()
     {
@@ -21,8 +24,12 @@ public class ParticleCollision : MonoBehaviour
     {
         int numCollisionEvents = _particleSystem.GetCollisionEvents(other, collisionEvents);
         
-        GameObject explosion = Instantiate(_explosionPrefab, collisionEvents[0].intersection, Quaternion.identity);
+        // рабочий старый вариант без FXpool
+        // GameObject explosion = Instantiate(_explosionPrefab, collisionEvents[0].intersection, Quaternion.identity);
         
+        ProjectileCollided?.Invoke(collisionEvents[0].intersection);
+        
+        // чтобы ящики толкались 
         // if (other.GetComponent<Rigidbody2D>() != null)
         //     other.GetComponent<Rigidbody2D>().AddForceAtPosition(collisionEvents[0].intersection * 100 - transform.position, collisionEvents[0].intersection + Vector3.up);
     }

@@ -8,8 +8,6 @@ public class ProjectilePool : MonoBehaviour
 {
     [SerializeField] private GameObject _container;
     [SerializeField] private int _capacity;
-
-    public event UnityAction Died;
     
     // попробуем очередь ради эксперимента 
     private Queue<Projectile> _pool = new Queue<Projectile>();

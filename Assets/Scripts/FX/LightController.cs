@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -9,7 +10,7 @@ public class LightController : MonoBehaviour
     public UnityEngine.Rendering.Universal.Light2D explosionLight;
     public float explosionLightIntensity;
 
-    private void Start()
+    private void OnEnable()
     {
         DOVirtual.Float(0, explosionLightIntensity,  _duration, ChangeLight).OnComplete(() => DOVirtual.Float(explosionLightIntensity, 0, .1f, ChangeLight));
     }
