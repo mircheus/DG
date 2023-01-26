@@ -50,14 +50,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpStatterForce;
     [SerializeField] private PlayerShooting _player;
 
+    [Header("Dash")] 
+    [SerializeField] private float _dashForce;
+    [SerializeField] private float _dashDuration;
+    [SerializeField] private bool _isDashed = false;
+    [SerializeField] private float _yStabilizer = 0.5f;
+
     // [Header("WORKAROUND")] 
     // WORKAROUND
     public event UnityAction WallJumped;
     public event UnityAction WallSliding;
     public event UnityAction Jumped;
 
+    public event UnityAction Dashed;
+
     [Header("Debug variables")] 
-    [SerializeField] private List<RaycastHit2D> _raycastHit2Ds = new List<RaycastHit2D>();
+    // [SerializeField] private List<RaycastHit2D> _raycastHit2Ds = new List<RaycastHit2D>();
     [SerializeField] private bool _isTouchingWall;
     [SerializeField] private bool _wallSliding;
     [SerializeField] private bool _wallJumping = false;
@@ -107,6 +115,7 @@ public class PlayerController : MonoBehaviour
 
         if (IsGrounded())
         {
+            _isDashed = false;
             Crouch();
         }
         
@@ -120,11 +129,27 @@ public class PlayerController : MonoBehaviour
             _wallSliding = false;
         }
 
-        if (_wallSliding)
+        if (Input.GetKeyDown(KeyCode.X) && IsGrounded() == false && _isDashed == false)
         {
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x,Mathf.Clamp(_rigidbody.velocity.y, -_wallSlidingSpeed, float.MaxValue ));
+            Dash();
+            Debug.Log("Dashed");
         }
-        
+
+        // if (_wallSliding)
+        // {
+        //     _rigidbody.velocity = new Vector2(_rigidbody.velocity.x,Mathf.Clamp(_rigidbody.velocity.y, -_wallSlidingSpeed, float.MaxValue ));
+        // }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Time.timeScale = 0.7f;
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            Time.timeScale = 1f;
+        }
+
         if (_wallSliding && Input.GetKeyDown(KeyCode.Space) && _horizontalDirectionRaw != 0)
         {
             _wallJumping = true;
@@ -137,17 +162,8 @@ public class PlayerController : MonoBehaviour
             // _rigidbody.AddForce(new Vector2(_xWallForce * -_horizontalDirectionRaw, _yWallForce), ForceMode2D.Impulse);
             _rigidbody.AddForce(new Vector2(_xWallForce * _horizontalDirectionRaw, _yWallForce), ForceMode2D.Impulse);
         }
-        
-        // if (_wallJumping)
-        // {
-        //     // _rigidbody2D.velocity = new Vector2(_xWallForce * -_horizontalDirection, _yWallForce);
-        //     _rigidbody2D.AddForce(new Vector2(_xWallForce * -_horizontalDirectionRaw, _yWallForce), ForceMode2D.Impulse);   
-        //     // Debug.Log($"{_rigidbody2D.velocity.x}");
-        // }
     }
     
-    
-
     private void FixedUpdate()
     {
         Move();
@@ -162,11 +178,7 @@ public class PlayerController : MonoBehaviour
             ApplyFallMultiplier();
         }
 
-        if (_wallSliding)
-        {
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x,
-                Mathf.Clamp(_rigidbody.velocity.y, -_wallSlidingSpeed, float.MaxValue));
-        }
+        WallSlide();
     }
     
     private void Jump()
@@ -222,7 +234,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (!_isAbleToMove)
+        if (_isAbleToMove == false)
         {
             return;
         }
@@ -264,36 +276,21 @@ public class PlayerController : MonoBehaviour
         return _wallCheckerCollider.IsTouching(_groundContactFilter);
     }
 
-    private bool IsTouchingRightWall()
+    private void WallSlide()
     {
-        return false;
-    }
-
-    private void SetWallCheckerDirection(float horizontalDirection)
-    {
-        if (horizontalDirection > 0.1f)
+        if (_wallSliding)
         {
-            _wallCheckerCollider.offset = _offsetVector;
-        }
-        else if (horizontalDirection < -0.1f)
-        {
-            _wallCheckerCollider.offset = -_offsetVector;
-        }
-        else if (horizontalDirection == 0)
-        {
-            _wallCheckerCollider.offset = Vector2.zero;
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, Mathf.Clamp(_rigidbody.velocity.y, -_wallSlidingSpeed, float.MaxValue));
         }
     }
 
-    private void WallCheck()
+    private void Dash()
     {
-        RaycastHit2D rightHit = Physics2D.CircleCast((Vector2)GetComponent<BoxCollider2D>().bounds.center + _offsetVector, 0.3f,
-                Vector2.right);
-    }
-
-    private bool IsOnWall()
-    {
-        return false;
+        StopCoroutine(DisableMovement(0f));
+        StartCoroutine(DisableMovement(_dashDuration));
+        _rigidbody.AddForce(new Vector2(_horizontalDirectionRaw, _yStabilizer) * _dashForce, ForceMode2D.Impulse);
+        _isDashed = true;
+        Dashed?.Invoke();
     }
 
     private IEnumerator DisableMovement(float time)
@@ -330,5 +327,37 @@ public class PlayerController : MonoBehaviour
 
         // Handles.color = IsGrounded() ? Color.green : Color.red;
         // Handles.DrawWireDisc(_groundChecker.position, transform.forward, _circleRadius, 2f);
+    }
+    
+    private bool IsTouchingRightWall()
+    {
+        return false;
+    }
+
+    private void SetWallCheckerDirection(float horizontalDirection)
+    {
+        if (horizontalDirection > 0.1f)
+        {
+            _wallCheckerCollider.offset = _offsetVector;
+        }
+        else if (horizontalDirection < -0.1f)
+        {
+            _wallCheckerCollider.offset = -_offsetVector;
+        }
+        else if (horizontalDirection == 0)
+        {
+            _wallCheckerCollider.offset = Vector2.zero;
+        }
+    }
+
+    private void WallCheck()
+    {
+        RaycastHit2D rightHit = Physics2D.CircleCast((Vector2)GetComponent<BoxCollider2D>().bounds.center + _offsetVector, 0.3f,
+            Vector2.right);
+    }
+
+    private bool IsOnWall()
+    {
+        return false;
     }
 }

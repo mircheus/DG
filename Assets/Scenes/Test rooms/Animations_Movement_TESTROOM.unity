@@ -178,6 +178,14 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 8.4375
       objectReference: {fileID: 0}
+    - target: {fileID: 5437939849830402908, guid: 330b2afd309264940b563158ac0a35df, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5437939849830402908, guid: 330b2afd309264940b563158ac0a35df, type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5437939849830402910, guid: 330b2afd309264940b563158ac0a35df, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -5448,6 +5456,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4746834698454303542, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
+      propertyPath: _dashForce
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746834698454303542, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
+      propertyPath: _yStabilizer
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746834698454303542, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
+      propertyPath: _dashDuration
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4746834698454303542, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
+      propertyPath: _movementAcceleration
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 4746834699155818247, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
       propertyPath: _cameraImpulse
       value: 
