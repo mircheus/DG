@@ -2,15 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Turret : Enemy
 {
-    [SerializeField] private GameObject _deathFx;
-    
     private SpriteRenderer _spriteRenderer;
     private EnemyTurretShooting _enemyTurretShooting;
     private Rigidbody2D _rigidbody;
-
+    public event UnityAction<Vector3> Exploded;
+    
     protected override void Start()
     {
         base.Start();
@@ -21,10 +21,10 @@ public class Turret : Enemy
 
     protected override void Die()
     {
-        Instantiate(_deathFx, transform.position, Quaternion.identity); // заменить на вытащить из пула 
         _spriteRenderer.enabled = false;
         _enemyTurretShooting.StopFiring();
         _rigidbody.simulated = false;
+        Exploded?.Invoke(transform.position);
         base.Die();
     }
 }

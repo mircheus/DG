@@ -9,8 +9,8 @@ public class ParticleCollision : MonoBehaviour
 {
     private ParticleSystem _particleSystem;
     public List<ParticleCollisionEvent> collisionEvents;
-    public CinemachineVirtualCamera camera;
-    [SerializeField] private GameObject _explosionPrefab;
+    // public CinemachineVirtualCamera camera;
+    // [SerializeField] private GameObject _explosionPrefab;
 
     public event UnityAction<Vector3> ProjectileCollided;
 
@@ -22,7 +22,8 @@ public class ParticleCollision : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        int numCollisionEvents = _particleSystem.GetCollisionEvents(other, collisionEvents);
+        // int numCollisionEvents = _particleSystem.GetCollisionEvents(other, collisionEvents);
+        _particleSystem.GetCollisionEvents(other, collisionEvents);
         
         // рабочий старый вариант без FXpool
         // GameObject explosion = Instantiate(_explosionPrefab, collisionEvents[0].intersection, Quaternion.identity);

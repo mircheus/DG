@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerFxPool : FXPool
 {
+    [SerializeField] private ParticleCollision _particleCollision;
+    
     private void OnEnable()
     {
         _particleCollision.ProjectileCollided += EnableFX;
