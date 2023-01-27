@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         _currentHealth -= damage;
         _damageFX.Blink();
         Hitted?.Invoke();
-        HealthChanged(_currentHealth);
+        HealthChanged?.Invoke(_currentHealth);
         
         if (_currentHealth <= 0)
         {

@@ -15,7 +15,7 @@ public class Ninja : Enemy
         base.Start();
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        Debug.Log(_currentHealth);
+        // Debug.Log(_currentHealth);
     }
     
 

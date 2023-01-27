@@ -432,6 +432,10 @@ MonoBehaviour:
     maxNormalAngle: 0
   _jumpStatterForce: 5
   _player: {fileID: 4746834699155818247}
+  _dashForce: 0
+  _dashDuration: 0
+  _isDashed: 0
+  _yStabilizer: 0.5
   _isTouchingWall: 0
   _wallSliding: 0
   _wallJumping: 0
@@ -484,7 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 390e17d584a9d40aa9c3f79a3dff3b08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 10
+  _maxHealth: 20
 --- !u!114 &5816558424466015106
 MonoBehaviour:
   m_ObjectHideFlags: 0

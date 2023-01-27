@@ -15,8 +15,8 @@ public class MeleeEnemy : MonoBehaviour
     [SerializeField] private BoxCollider2D _boxCollider;
     [SerializeField] private LayerMask _playerLayer;
     [SerializeField] private Ninja _enemy;
+    [SerializeField] private Player _player;
     
-    private Player _player;
     private float _cooldownTimer = Mathf.Infinity;
     private Vector2 _colliderOffset;
     private Animator _animator;
@@ -54,7 +54,7 @@ public class MeleeEnemy : MonoBehaviour
 
         if (_enemyPatrol != null)
         {
-            if (_isAlive) // WORKAROUND для того чтобы прекратить движение после смерти противника
+            if (_isAlive)
             {
                 _enemyPatrol.enabled = !PlayerInSight();
             }

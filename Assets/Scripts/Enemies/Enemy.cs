@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] protected int _maxHealth;
-    public EnemyDisabler _enemyDisabler;
+    private EnemyDisabler _enemyDisabler;
 
     public event UnityAction Died;
     public event UnityAction Hitted;
@@ -19,8 +19,8 @@ public class Enemy : MonoBehaviour
     protected virtual void Start()
     {
         _damageFx = GetComponent<FlashEffect>();
-        _currentHealth = _maxHealth;
         _enemyDisabler = GetComponentInParent<EnemyDisabler>();
+        _currentHealth = _maxHealth;
     }
 
     protected virtual void TakeDamage(int damage)

@@ -162,7 +162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6444123817854659388}
   - component: {fileID: 6444123817854659391}
-  - component: {fileID: 6444123817854659390}
+  - component: {fileID: 7982236580635504454}
   m_Layer: 5
   m_Name: HP_slider
   m_TagString: Untagged
@@ -188,11 +188,11 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -434, y: 418}
-  m_SizeDelta: {x: 933.51, y: 75.17}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 145, y: -122}
+  m_SizeDelta: {x: 600.2698, y: 75.16998}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &6444123817854659391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6444123817854659390
+--- !u!114 &7982236580635504454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -253,7 +253,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6444123817854659389}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f1eeb389df247af9686c723b5de6e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 77b31db9b8054294da1e767a28c6755f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
