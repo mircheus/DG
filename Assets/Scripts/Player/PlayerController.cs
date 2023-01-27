@@ -129,10 +129,9 @@ public class PlayerController : MonoBehaviour
             _wallSliding = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.X) && IsGrounded() == false && _isDashed == false)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded() == false && _isDashed == false)
         {
             Dash();
-            Debug.Log("Dashed");
         }
 
         // if (_wallSliding)

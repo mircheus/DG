@@ -164,11 +164,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6444123817854659388, guid: 3e6a3b02da2f61d42847ecfa689f0a76, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 600.2698
+      value: 532.8251
       objectReference: {fileID: 0}
     - target: {fileID: 6444123817854659388, guid: 3e6a3b02da2f61d42847ecfa689f0a76, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 75.16998
+      value: 56.7759
       objectReference: {fileID: 0}
     - target: {fileID: 6444123817854659388, guid: 3e6a3b02da2f61d42847ecfa689f0a76, type: 3}
       propertyPath: m_LocalPosition.x
@@ -200,11 +200,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6444123817854659388, guid: 3e6a3b02da2f61d42847ecfa689f0a76, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 145
+      value: 55.4825
       objectReference: {fileID: 0}
     - target: {fileID: 6444123817854659388, guid: 3e6a3b02da2f61d42847ecfa689f0a76, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -122
+      value: -43.519
       objectReference: {fileID: 0}
     - target: {fileID: 6444123817854659388, guid: 3e6a3b02da2f61d42847ecfa689f0a76, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -224,7 +224,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6444123817985526562, guid: 3e6a3b02da2f61d42847ecfa689f0a76, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444123818115929583, guid: 3e6a3b02da2f61d42847ecfa689f0a76, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2.5000305
       objectReference: {fileID: 0}
     - target: {fileID: 7982236580635504454, guid: 3e6a3b02da2f61d42847ecfa689f0a76, type: 3}
       propertyPath: _player
@@ -75007,6 +75011,10 @@ PrefabInstance:
       propertyPath: m_RefResolutionY
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 5437939849830402906, guid: 330b2afd309264940b563158ac0a35df, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5437939849830402907, guid: 330b2afd309264940b563158ac0a35df, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -75053,23 +75061,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5437939849830402908, guid: 330b2afd309264940b563158ac0a35df, type: 3}
       propertyPath: orthographic size
-      value: 8.4375
+      value: 7.0625
       objectReference: {fileID: 0}
     - target: {fileID: 5437939849830402908, guid: 330b2afd309264940b563158ac0a35df, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0
+      value: 0.00052083336
       objectReference: {fileID: 0}
     - target: {fileID: 5437939849830402908, guid: 330b2afd309264940b563158ac0a35df, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0
+      value: 0.0009259259
       objectReference: {fileID: 0}
     - target: {fileID: 5437939849830402908, guid: 330b2afd309264940b563158ac0a35df, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 1
+      value: 0.93125004
       objectReference: {fileID: 0}
     - target: {fileID: 5437939849830402908, guid: 330b2afd309264940b563158ac0a35df, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 1
+      value: 0.4185185
       objectReference: {fileID: 0}
     - target: {fileID: 5437939849830402910, guid: 330b2afd309264940b563158ac0a35df, type: 3}
       propertyPath: m_Name
@@ -75314,7 +75322,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16

@@ -44,6 +44,11 @@ public class DroneAudio : MonoBehaviour
         _audioSource.PlayOneShot(_shootSound, _shootVolume);
     }
 
+    private void OnAlarmed()
+    {
+        // _audioSource.Play();
+    }
+
     private void OnDied()
     {
         _audioSource.PlayOneShot(_explosionSound, _explosionVolume);

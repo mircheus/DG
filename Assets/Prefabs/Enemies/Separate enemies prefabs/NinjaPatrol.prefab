@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2206d8ecc67a7540ab8c010482a665c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 5
+  _maxHealth: 3
 --- !u!114 &8212431155302550180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   _attackCooldown: 0.7
   _range: 5.34
   _colliderDistance: 0.58
-  _damage: 2
+  _damage: 6
   _boxCollider: {fileID: 8212431155302550183}
   _playerLayer:
     serializedVersion: 2

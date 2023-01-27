@@ -213,8 +213,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 12
-  _deathFx: {fileID: 1559039454114822766, guid: 9079916657313e244aa1bfc4d54e013b, type: 3}
-  _light: {fileID: 3483948992760212708}
 --- !u!114 &1396354300634280071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +256,7 @@ MonoBehaviour:
   _container: {fileID: 0}
   _capacity: 5
   _currentShootPoint: {fileID: 1593929950954408979}
-  _projectilePrefab: {fileID: 8940426276466058518, guid: 15a76272211efc14593e96902cb780ab, type: 3}
+  _projectilePrefab: {fileID: 8940426276466058518, guid: daedefc04b46641e283e890b4f809df8, type: 3}
   _projectileSpeed: 14
   _damage: 1
   _detector: {fileID: 3367305776495846069}

@@ -180,11 +180,13 @@ MonoBehaviour:
   _attackCooldown: 0.7
   _range: 5.34
   _colliderDistance: 0.58
-  _damage: 2
+  _damage: 6
   _boxCollider: {fileID: 4247585761280493238}
   _playerLayer:
     serializedVersion: 2
     m_Bits: 2048
+  _enemy: {fileID: 0}
+  _player: {fileID: 0}
 --- !u!50 &4247585761280493239
 Rigidbody2D:
   serializedVersion: 4
