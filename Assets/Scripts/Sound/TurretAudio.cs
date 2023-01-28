@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class TurretAudio : MonoBehaviour
+public class TurretAudio : EnemyAudio
 {
     [SerializeField] private AudioClip _shootSound;
     [SerializeField] private float _shootVolume;
@@ -19,9 +19,10 @@ public class TurretAudio : MonoBehaviour
     [SerializeField] private EnemyTurretShooting _enemyTurretShooting;
     [SerializeField] private Turret _turret;
 
-    private AudioSource _audioSource;
+    // private AudioSource _audioSource;
     private void OnEnable()
     {
+        base.OnEnable();
         _enemyTurretShooting.Shooted += OnShooted;
         _turret.Hitted += OnHitted;
         _turret.Died += OnDied;
@@ -29,15 +30,16 @@ public class TurretAudio : MonoBehaviour
 
     private void OnDisable()
     {
+        base.OnDisable();
         _enemyTurretShooting.Shooted -= OnShooted;
         _turret.Hitted -= OnHitted;
         _turret.Died -= OnDied;
     }
-
-    private void Start()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
+    //
+    // private void Start()
+    // {
+    //     // _audioSource = GetComponent<AudioSource>();
+    // }
 
     private void OnShooted()
     {

@@ -16,6 +16,8 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float _slowMoValue;
     [SerializeField] private Volume _volume;
     public event UnityAction Shooted;
+    public event UnityAction SlowMoActivated;
+    public event UnityAction SlowMoDeactivated;
 
     private void Start()
     {
@@ -50,12 +52,14 @@ public class PlayerShooting : MonoBehaviour
     private void ActivateSlowMo(float value)
     {
         Time.timeScale = value;
+        SlowMoActivated?.Invoke();
         _volume.enabled = true;
     }
 
     private void DeactivateSlowMo()
     {
         Time.timeScale = 1f;
+        SlowMoDeactivated?.Invoke();
         _volume.enabled = false;
     }
 }
