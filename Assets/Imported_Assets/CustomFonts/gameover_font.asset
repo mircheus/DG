@@ -60,7 +60,7 @@ Material:
     - _GlowInner: 1
     - _GlowOffset: 1
     - _GlowOuter: 1
-    - _GlowPower: 0.96609974
+    - _GlowPower: 0.7379944
     - _GradientScale: 6
     - _LightAngle: 3.1416
     - _MaskSoftnessX: 0
@@ -165,9 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: gameover_font
   m_EditorClassIdentifier: 
-  hashCode: -1783779899
+  hashCode: -2035304948
   material: {fileID: -8333252474764755362}
-  materialHashCode: -2074541115
+  materialHashCode: 3700012
   m_Version: 1.1.0
   m_SourceFontFileGUID: c239aa3e7139d4b41b372dd062f6debb
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: c239aa3e7139d4b41b372dd062f6debb, type: 3}

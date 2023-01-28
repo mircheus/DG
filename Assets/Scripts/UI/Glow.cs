@@ -11,15 +11,19 @@ using DG.Tweening;
 public class Glow : MonoBehaviour
 {
     [SerializeField] private float _glowDuration = 0.5f;
-    private Material _material;
-
-    private void Start()
+    private TMP_Text _tmpText;
+    
+    private void OnEnable()
     {
-        int ID_GlowPower = Shader.PropertyToID("_GlowPower");
-
-        Debug.Log(TryGetComponent<TMP_Text>(out TMP_Text text) ? "TMP_text component received" : "ERROR: TMP_text component not received");
-
-        text.fontSharedMaterial.SetFloat(ShaderUtilities.ID_GlowPower, 0f);
-        Tween tween = text.fontSharedMaterial.DOFloat(1f, ID_GlowPower, _glowDuration).SetLoops(-1, LoopType.Yoyo);
+        if (gameObject.activeSelf)
+        {
+            Debug.Log(TryGetComponent<TMP_Text>(out TMP_Text text) ? "TMP_text component received" : "ERROR: TMP_text component not received");
+            _tmpText = text;
+            int ID_GlowPower = Shader.PropertyToID("_GlowPower");
+            // Debug.Log(TryGetComponent<TMP_Text>(out TMP_Text text) ? "TMP_text component received" : "ERROR: TMP_text component not received");
+            // text.fontSharedMaterial.SetFloat(ShaderUtilities.ID_GlowPower, 0f);
+            _tmpText.fontSharedMaterial.SetFloat(ShaderUtilities.ID_GlowPower, 0f);
+            Tween tween = _tmpText.fontSharedMaterial.DOFloat(1f, ID_GlowPower, _glowDuration).SetLoops(-1, LoopType.Yoyo);
+        }
     }
 }

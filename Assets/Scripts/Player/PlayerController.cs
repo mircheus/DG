@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
 
     public bool IsPlayerGrounded => _isGrounded;
 
+    public float HorizontalInputDirection => _horizontalDirectionRaw;
 
 
     private bool ChangingDirection => (_rigidbody.velocity.x > 0f && _horizontalDirectionRaw < 0f) ||
@@ -138,17 +139,7 @@ public class PlayerController : MonoBehaviour
         // {
         //     _rigidbody.velocity = new Vector2(_rigidbody.velocity.x,Mathf.Clamp(_rigidbody.velocity.y, -_wallSlidingSpeed, float.MaxValue ));
         // }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            Time.timeScale = 0.7f;
-        }
-
-        if (Input.GetMouseButtonUp(1))
-        {
-            Time.timeScale = 1f;
-        }
-
+        
         if (_wallSliding && Input.GetKeyDown(KeyCode.Space) && _horizontalDirectionRaw != 0)
         {
             _wallJumping = true;

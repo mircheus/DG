@@ -54,8 +54,8 @@ public class Player : MonoBehaviour
         
         if (_currentHealth <= 0)
         {
-            SwitchControlScriptsTo(false);
             Died?.Invoke();
+            SwitchControlScriptsTo(false);
         }
     }
 
@@ -75,5 +75,4 @@ public class Player : MonoBehaviour
         _playerShooting.enabled = value;
         _animationSwitcher.enabled = value;
     }
-        
 }

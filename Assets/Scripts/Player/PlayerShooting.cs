@@ -5,15 +5,23 @@ using System.Numerics;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 using Vector2 = UnityEngine.Vector2;
 
 public class PlayerShooting : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _particleProjectile;
     [SerializeField] private CinemachineImpulseSource _cameraImpulse;
-    
+    [Range(0,1)]
+    [SerializeField] private float _slowMoValue;
+    [SerializeField] private Volume _volume;
     public event UnityAction Shooted;
-    
+
+    private void Start()
+    {
+        _volume.enabled = false;
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -27,10 +35,27 @@ public class PlayerShooting : MonoBehaviour
         {
             _particleProjectile.Stop();
         }
+        
+        if (Input.GetMouseButtonDown(1))
+        {
+            ActivateSlowMo(_slowMoValue);
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            DeactivateSlowMo();
+        }
     }
-    
-    private void ShootParticleProjectileInDirection()
+
+    private void ActivateSlowMo(float value)
     {
-        _particleProjectile.Play();
+        Time.timeScale = value;
+        _volume.enabled = true;
+    }
+
+    private void DeactivateSlowMo()
+    {
+        Time.timeScale = 1f;
+        _volume.enabled = false;
     }
 }

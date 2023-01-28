@@ -5,34 +5,38 @@ using UnityEngine;
 
 public class Particles : MonoBehaviour
 {
-    private ParticleSystemRenderer PSR;
+    [SerializeField] private PlayerController _playerController;
+    
+    private ParticleSystemRenderer _particleSystemRenderer;
+    private ParticleSystem _particleSystem;
+
+    private void OnEnable()
+    {
+        _playerController.Dashed += OnDashed;
+    }
+
+    private void OnDisable()
+    {
+        _playerController.Dashed -= OnDashed;
+    }
 
     private void Start()
     {
-        PSR = GetComponent<ParticleSystemRenderer>();
-        // PSR.gameObject.SetActive(false);
+        _particleSystemRenderer = GetComponent<ParticleSystemRenderer>();
+        _particleSystem = GetComponent<ParticleSystem>();
     }
 
-    private float InputX;
-    
-    private void Update()
+    private void OnDashed()
     {
-        InputX = Input.GetAxisRaw("Horizontal");
-        //
-        // if (Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     // PSR.gameObject.SetActive(true);
-        // }
-    
-        if (InputX < 0)
+        if (_playerController.HorizontalInputDirection == 1)
         {
-            PSR.flip = Vector3.right;
-            Debug.LogWarning($"PSR flip = {PSR.flip}");
+            _particleSystemRenderer.flip = Vector3.left;
         }
-        else if (InputX > 0)
+        else if (_playerController.HorizontalInputDirection <= 0)
         {
-            PSR.flip = Vector3.left;
-            Debug.LogWarning($"PSR flip = {PSR.flip}"); 
+            _particleSystemRenderer.flip = Vector3.right;
         }
+        
+        _particleSystem.Play();
     }
 }

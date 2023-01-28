@@ -32,14 +32,14 @@ public class AnimationSwitcher : MonoBehaviour
     
     [Header("Debug variables")]
     [SerializeField] private float _zRotation;
-
+    
     private void OnEnable()
     {
         _playerController.WallJumped += OnWallJumped;
         _playerController.WallSliding += OnWallSlide;
         _player.Died += OnDied;
     }
-    //
+    
     private void OnDisable()
     {
         _playerController.WallJumped -= OnWallJumped;
@@ -60,6 +60,11 @@ public class AnimationSwitcher : MonoBehaviour
         Jump();
         Shoot();
         Crouch();
+    }
+    
+    public void TurnCharacter()
+    {
+        _spriteRenderer.flipX = !_spriteRenderer.flipX;
     }
 
     private void Move()
@@ -145,10 +150,7 @@ public class AnimationSwitcher : MonoBehaviour
         // Debug.Log($"x:{_handGunPosition.position.x} y:{_handGunPosition.position.y} z:{_handGunPosition.position.z}");
     }
 
-    private void TurnCharacter()
-    {
-        _spriteRenderer.flipX = !_spriteRenderer.flipX;
-    }
+
 
     private bool IsGrounded()
     {
@@ -168,7 +170,7 @@ public class AnimationSwitcher : MonoBehaviour
 
     private void OnDied()
     {
-        // _animator.SetBool(_isGrounded, false);
+        Debug.Log("OnDied");
         _animator.SetTrigger(_isDied);
     }
 }
