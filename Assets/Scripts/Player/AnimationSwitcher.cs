@@ -14,6 +14,7 @@ public class AnimationSwitcher : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private Transform _handGunPosition;
     [SerializeField] private PlayerController _playerController;
+    [SerializeField] private Player _player;
     
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -22,7 +23,7 @@ public class AnimationSwitcher : MonoBehaviour
     private int _isFiring = Animator.StringToHash("isFiring");
     private int _isCrouching = Animator.StringToHash("isCrouching");
     private int _isGrounded = Animator.StringToHash("isGrounded");
-    
+    private int _isDied = Animator.StringToHash("isDied");
     // Walljump stuff
     private int _isWallSliding = Animator.StringToHash("isWallSliding");
     private int _isWallJumping = Animator.StringToHash("isWallJumping");
@@ -36,19 +37,20 @@ public class AnimationSwitcher : MonoBehaviour
     {
         _playerController.WallJumped += OnWallJumped;
         _playerController.WallSliding += OnWallSlide;
+        _player.Died += OnDied;
     }
     //
     private void OnDisable()
     {
         _playerController.WallJumped -= OnWallJumped;
         _playerController.WallSliding -= OnWallSlide;
+        _player.Died -= OnDied;
     }
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        // Time.timeScale = 0.5f;
     }
     
     private void Update()
@@ -125,7 +127,6 @@ public class AnimationSwitcher : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             _animator.SetTrigger(_isFiring);
-            // _animator.SetBool(_);
         }
     }
     
@@ -163,5 +164,11 @@ public class AnimationSwitcher : MonoBehaviour
         
         return _playerController.IsPlayerGrounded;
         // return Physics2D.OverlapCircle(_groundChecker.position, 0.3f, _groundLayer);
+    }
+
+    private void OnDied()
+    {
+        // _animator.SetBool(_isGrounded, false);
+        _animator.SetTrigger(_isDied);
     }
 }

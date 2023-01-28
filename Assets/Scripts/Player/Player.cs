@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     [SerializeField] private int _maxHealth;
-
+    [SerializeField] private Pause _pause;
     public event UnityAction Hitted;
     public event UnityAction<int> HealthChanged;
     public event UnityAction Died;
@@ -17,14 +17,31 @@ public class Player : MonoBehaviour
     
     private FlashEffect _damageFX;
     private PlayerController _playerController;
+    private PlayerShooting _playerShooting;
+    private AnimationSwitcher _animationSwitcher;
 
     public int MaxHealth => _maxHealth;
     public int CurrentHealth => _currentHealth;
+
+    private void OnEnable()
+    {
+        _pause.Paused += OnPaused;
+        _pause.Unpaused += OnUnpaused;
+    }
+
+    private void OnDisable()
+    {
+        _pause.Paused -= OnPaused;
+        _pause.Unpaused -= OnUnpaused;
+    }
     
     private void Start()
     {
+        Time.timeScale = 1f;
         _damageFX = GetComponent<FlashEffect>();
         _playerController = GetComponent<PlayerController>();
+        _playerShooting = GetComponent<PlayerShooting>();
+        _animationSwitcher = GetComponent<AnimationSwitcher>();
         _currentHealth = _maxHealth;
     }
 
@@ -37,9 +54,26 @@ public class Player : MonoBehaviour
         
         if (_currentHealth <= 0)
         {
-            Debug.Log("Game Over");
+            SwitchControlScriptsTo(false);
             Died?.Invoke();
-            // _playerController.enabled = false; // DISABLED FOR TEST PURPOSES
         }
     }
+
+    private void OnPaused()
+    {
+        SwitchControlScriptsTo(false);
+    }
+
+    private void OnUnpaused()
+    {
+        SwitchControlScriptsTo(true);
+    }
+
+    private void SwitchControlScriptsTo(bool value)
+    {
+        _playerController.enabled = value;
+        _playerShooting.enabled = value;
+        _animationSwitcher.enabled = value;
+    }
+        
 }
