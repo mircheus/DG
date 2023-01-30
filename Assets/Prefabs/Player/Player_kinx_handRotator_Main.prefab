@@ -45,7 +45,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.12, y: 0}
+  m_Offset: {x: 0.08, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,7 +56,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.48, y: 1}
+  m_Size: {x: 0.8, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &4746834699006843771
 GameObject:
@@ -333,7 +333,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.019063033, y: -0.105298206}
+  m_Offset: {x: 0.02, y: -0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -344,7 +344,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.13145931, y: 0.45947203}
+  m_Size: {x: 0.13, y: 0.47}
   m_EdgeRadius: 0
 --- !u!50 &7575618301205707857
 Rigidbody2D:
@@ -479,6 +479,7 @@ MonoBehaviour:
   _particleProjectile: {fileID: 7932160528248861039}
   _cameraImpulse: {fileID: 0}
   _slowMoValue: 0.436
+  _volume: {fileID: 0}
 --- !u!114 &7487286890378862009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,16 +629,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27766e8573306c40bf419b6b1bc20b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootSound: {fileID: 8300000, guid: 89c65e80ced118149a0cd2e765cf9e49, type: 3}
-  _shootVolume: 0
+  _shootSound: {fileID: 8300000, guid: 5841042087bb57e4f91273d7cba8cfed, type: 3}
+  _shootVolume: 0.8
   _jumpSound: {fileID: 8300000, guid: feb3b25990fd99344bd35d5081673351, type: 3}
   _jumpVolume: 0
+  _dashSound: {fileID: 0}
+  _dashVolume: 0
   _stepSound: {fileID: 8300000, guid: 3017d5beafb6a7943a3462a721bf52b0, type: 3}
   _stepVolume: 0
   _hitSound: {fileID: 8300000, guid: feedddc2a7dbe384b9eb16eee4987a66, type: 3}
   _hitVolume: 0
   _dieSound: {fileID: 8300000, guid: 72664a73c74012541a0020b95e554143, type: 3}
   _dieVolume: 0
+  _pitchMultiplier: 0
   _player: {fileID: 7487286890378862009}
   _playerShooting: {fileID: 4746834699155818247}
   _playerController: {fileID: 4746834698454303542}

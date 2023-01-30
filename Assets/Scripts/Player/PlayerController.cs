@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -17,7 +18,11 @@ public class PlayerController : MonoBehaviour
     
     [Header("Components")] 
     private Rigidbody2D _rigidbody;
-
+    private BoxCollider2D _standCollider;
+    // private CapsuleCollider2D _jumpCollider;
+    // private BoxCollider2D _jumpCollider;
+    // private BoxCollider2D[] _standAndJumpColliders;
+    
     [Header("Movement Variables")] 
     [SerializeField] private float _movementAcceleration = 50f;
     [SerializeField] private float _maxMoveSpeed = 10f;
@@ -32,7 +37,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _airLinearDrag = 2.5f;
     [SerializeField] private float _fallMultiplier = 14f;
     [SerializeField] private float _lowJumpFallMultiplier = 5f;
-
+    [SerializeField] private BoxCollider2D _jumpCollider;
+    
     [Header("Wall Slide")] 
     // [SerializeField] private Transform _wallChecker;
     [SerializeField] private BoxCollider2D _wallCheckerCollider;
@@ -55,17 +61,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _dashDuration;
     [SerializeField] private bool _isDashed = false;
     [SerializeField] private float _yStabilizer = 0.5f;
-
-    // [Header("WORKAROUND")] 
-    // WORKAROUND
+    
     public event UnityAction WallJumped;
     public event UnityAction WallSliding;
     public event UnityAction Jumped;
 
     public event UnityAction Dashed;
 
-    [Header("Debug variables")] 
-    // [SerializeField] private List<RaycastHit2D> _raycastHit2Ds = new List<RaycastHit2D>();
+    [Header("Debug variables")] [SerializeField]
+    private float _gravityScale;
+    [SerializeField] private List<RaycastHit2D> _raycastHit2Ds = new List<RaycastHit2D>();
     [SerializeField] private bool _isTouchingWall;
     [SerializeField] private bool _wallSliding;
     [SerializeField] private bool _wallJumping = false;
@@ -98,6 +103,13 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _player = GetComponent<PlayerShooting>();
+        _standCollider = GetComponent<BoxCollider2D>();
+        SetJumpColliderOFF();
+
+        // DEBUG
+        
+        Debug.Log($"_standCollider size.y : {_standCollider.size.y}");
+        Debug.Log($"_jumpCollider size.y : {_jumpCollider.size.y}");
     }
 
     private void Update()
@@ -112,12 +124,14 @@ public class PlayerController : MonoBehaviour
         if (_isAbleToJump)
         {
             Jump();
+            SetJumpColliderON();
         }
 
         if (IsGrounded())
         {
             _isDashed = false;
             Crouch();
+            SetJumpColliderOFF();
         }
         
         if (IsTouchingWall() && !IsGrounded())
@@ -133,12 +147,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded() == false && _isDashed == false)
         {
             Dash();
+            // StartCoroutine(DashCoroutine());
         }
-
-        // if (_wallSliding)
-        // {
-        //     _rigidbody.velocity = new Vector2(_rigidbody.velocity.x,Mathf.Clamp(_rigidbody.velocity.y, -_wallSlidingSpeed, float.MaxValue ));
-        // }
         
         if (_wallSliding && Input.GetKeyDown(KeyCode.Space) && _horizontalDirectionRaw != 0)
         {
@@ -152,6 +162,9 @@ public class PlayerController : MonoBehaviour
             // _rigidbody.AddForce(new Vector2(_xWallForce * -_horizontalDirectionRaw, _yWallForce), ForceMode2D.Impulse);
             _rigidbody.AddForce(new Vector2(_xWallForce * _horizontalDirectionRaw, _yWallForce), ForceMode2D.Impulse);
         }
+        
+        // Debug
+        _gravityScale = _rigidbody.gravityScale;
     }
     
     private void FixedUpdate()
@@ -161,6 +174,10 @@ public class PlayerController : MonoBehaviour
         if (IsGrounded())
         {
             ApplyGroundLinearDrag();
+        }
+        else if (_isDashed)
+        {
+            ApplyDashMultiplier();
         }
         else
         {
@@ -173,10 +190,10 @@ public class PlayerController : MonoBehaviour
     
     private void Jump()
     {
+        // SetJumpColliderON();
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0f);
         _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
         Jumped?.Invoke();
-        // _animationSwitcher.ChangeAnimationState("Player_jump");
     }
 
     private void Crouch()
@@ -202,7 +219,7 @@ public class PlayerController : MonoBehaviour
         {
             _rigidbody.gravityScale = _fallMultiplier;
         }
-        else if (_rigidbody.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+        else if (_rigidbody.velocity.y > 0 && Input.GetKey(KeyCode.Space) == false)
         {
             _rigidbody.gravityScale = _lowJumpFallMultiplier;
         }
@@ -210,6 +227,11 @@ public class PlayerController : MonoBehaviour
         {
             _rigidbody.gravityScale = 1f;
         }
+    }
+
+    private void ApplyDashMultiplier()
+    {
+        _rigidbody.gravityScale = 0f;
     }
 
     private void ApplyAirLinearDrag()
@@ -278,16 +300,30 @@ public class PlayerController : MonoBehaviour
     {
         StopCoroutine(DisableMovement(0f));
         StartCoroutine(DisableMovement(_dashDuration));
+        // _rigidbody.gravityScale = 0f;
         _rigidbody.AddForce(new Vector2(_horizontalDirectionRaw, _yStabilizer) * _dashForce, ForceMode2D.Impulse);
         _isDashed = true;
         Dashed?.Invoke();
     }
 
+    private IEnumerator DashCoroutine()
+    {
+        float originalGravity = _rigidbody.gravityScale;
+        _rigidbody.gravityScale = 0f;
+        _rigidbody.velocity = new Vector2(_horizontalDirectionRaw * _dashForce, 0f);
+        _isDashed = true;
+        yield return new WaitForSeconds(_dashDuration);
+        _rigidbody.gravityScale = originalGravity;
+    }
+    
+
     private IEnumerator DisableMovement(float time)
     {
         _isAbleToMove = false;
+        // _rigidbody.gravityScale = 0f;
         yield return new WaitForSeconds(time);
         _isAbleToMove = true;
+        _isDashed = false;
     }
 
     private void SetWallJumpingToFalse()
@@ -349,5 +385,17 @@ public class PlayerController : MonoBehaviour
     private bool IsOnWall()
     {
         return false;
+    }
+
+    private void SetJumpColliderON()
+    {
+        _standCollider.enabled = false;
+        _jumpCollider.enabled = true;
+    }
+
+    private void SetJumpColliderOFF()
+    {
+        _standCollider.enabled = true;
+        _jumpCollider.enabled = false;
     }
 }
