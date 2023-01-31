@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,7 +19,6 @@ public class PlayerController : MonoBehaviour
     
     [Header("Components")] 
     private Rigidbody2D _rigidbody;
-    private BoxCollider2D _standCollider;
 
     [Header("Movement Variables")] 
     [SerializeField] private float _movementAcceleration = 50f;
@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _xWallForce;
     [SerializeField] private float _yWallForce;
     [SerializeField] private float _wallJumpTime;
+    private WallChecker _wallChecker;
     
     [SerializeField] private ContactFilter2D _groundContactFilter;
 
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _isAbleToMove = true;
     [SerializeField] private float _horizontalDirectionRaw;
     [SerializeField] private float _verticalDirectionRaw;
+    [SerializeField] private Collider2D[] _results;
     private bool _isAbleToJump => Input.GetKeyDown(KeyCode.Space) && IsGrounded();
 
     public bool IsPlayerGrounded => _isGrounded;
@@ -99,7 +101,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _player = GetComponent<PlayerShooting>();
-        _standCollider = GetComponent<BoxCollider2D>();
+        _wallChecker = GetComponentInChildren<WallChecker>();
     }
 
     private void Update()
@@ -135,7 +137,8 @@ public class PlayerController : MonoBehaviour
             Dash();
         }
         
-        if (_wallSliding && Input.GetKeyDown(KeyCode.Space) && _horizontalDirectionRaw != 0)
+        // if (_wallSliding && Input.GetKeyDown(KeyCode.Space) && _horizontalDirectionRaw != 0)
+        if (_wallSliding && Input.GetKeyDown(KeyCode.Space))
         {
             WallJump();
         }
@@ -262,6 +265,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_wallSliding)
         {
+            CheckWallJumpDirection();
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, Mathf.Clamp(_rigidbody.velocity.y, -_wallSlidingSpeed, float.MaxValue));
         }
     }
@@ -271,11 +275,13 @@ public class PlayerController : MonoBehaviour
         _wallJumping = true;
         WallJumped?.Invoke();
         Invoke(nameof(SetWallJumpingToFalse), _wallJumpTime);
-            
         StopCoroutine(DisableMovement(0f));
         StartCoroutine(DisableMovement(.4f));
         _rigidbody.velocity = Vector2.zero;
-        _rigidbody.AddForce(new Vector2(_xWallForce * _horizontalDirectionRaw, _yWallForce), ForceMode2D.Impulse);
+        var direction = _wallChecker.GetDirection();
+        Debug.Log(direction);
+        // _rigidbody.AddForce(new Vector2(_xWallForce * _horizontalDirectionRaw, _yWallForce), ForceMode2D.Impulse);
+        _rigidbody.AddForce(new Vector2(_xWallForce * direction, _yWallForce), ForceMode2D.Impulse);
     }
 
     private void Dash()
@@ -286,7 +292,6 @@ public class PlayerController : MonoBehaviour
         _isDashed = true;
         Dashed?.Invoke();
     }
-    
 
     private IEnumerator DisableMovement(float time)
     {
@@ -301,7 +306,23 @@ public class PlayerController : MonoBehaviour
     {
         _wallJumping = false;
     }
-    
+
+    private void CheckWallJumpDirection()
+    {
+        Collider2D[] results = new Collider2D[100];
+        var side = _wallCheckerCollider.OverlapCollider(_groundContactFilter, results);
+        // Debug.Log(side);
+        _results = results;
+        // var x = results[0].GetContacts()
+        // var collisionPosition = results[0].transform.position;
+        var playerPosition = transform.position;
+        // var difference = playerPosition - collisionPosition;
+        
+        // Debug.Log("player "+ playerPosition.x);
+        // Debug.Log("collision "+ x.x);
+        // Debug.Log(results.Length);
+    }
+
     private void JumpShootStatter()
     {
         if (_isGrounded == false)
