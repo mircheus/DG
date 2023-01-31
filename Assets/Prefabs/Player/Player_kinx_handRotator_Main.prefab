@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4746834698557505034}
   - component: {fileID: 4031409440606532589}
+  - component: {fileID: 1995423995}
   m_Layer: 11
   m_Name: WallChecker
   m_TagString: Untagged
@@ -58,6 +59,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.3}
   m_EdgeRadius: 0
+--- !u!114 &1995423995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4746834698557505035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d8a199c32f51f4287a4b29af3561cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {x: 0, y: 0}
+  _point: {x: 0, y: 0}
+  _difference: {x: 0, y: 0}
+  _differenceX: 0
 --- !u!1 &4746834699006843771
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +328,7 @@ SpriteRenderer:
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 041f56d6a022446e8b09e8a5be7f79ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -431,7 +448,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  _jumpStatterForce: 1
+  _jumpStatterForce: 0
   _player: {fileID: 4746834699155818247}
   _dashForce: 35
   _dashDuration: 0.2
@@ -445,6 +462,7 @@ MonoBehaviour:
   _isAbleToMove: 1
   _horizontalDirectionRaw: 0
   _verticalDirectionRaw: 0
+  _results: []
 --- !u!114 &4746834698454303541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -631,18 +649,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shootSound: {fileID: 8300000, guid: 5841042087bb57e4f91273d7cba8cfed, type: 3}
-  _shootVolume: 0.8
+  _shootVolume: 0.6
   _jumpSound: {fileID: 8300000, guid: feb3b25990fd99344bd35d5081673351, type: 3}
   _jumpVolume: 0
   _dashSound: {fileID: 0}
   _dashVolume: 0
-  _stepSound: {fileID: 8300000, guid: 3017d5beafb6a7943a3462a721bf52b0, type: 3}
-  _stepVolume: 0
+  _stepSound: {fileID: 8300000, guid: 07626fa045da94a48968c60c3c477079, type: 3}
+  _stepVolume: 0.3
   _hitSound: {fileID: 8300000, guid: feedddc2a7dbe384b9eb16eee4987a66, type: 3}
   _hitVolume: 0
   _dieSound: {fileID: 8300000, guid: 72664a73c74012541a0020b95e554143, type: 3}
   _dieVolume: 0
-  _pitchMultiplier: 0
+  _pitchMultiplier: 0.655
   _player: {fileID: 7487286890378862009}
   _playerShooting: {fileID: 4746834699155818247}
   _playerController: {fileID: 4746834698454303542}
