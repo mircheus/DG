@@ -77250,64 +77250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27146c415c3dcf84faa9f584d1353f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &841261006
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 841261007}
-  - component: {fileID: 841261008}
-  m_Layer: 11
-  m_Name: JumpCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &841261007
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841261006}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 898773490}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &841261008
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841261006}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.02, y: -0.05}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.13, y: 0.35}
-  m_EdgeRadius: 0
 --- !u!1 &894307538
 GameObject:
   m_ObjectHideFlags: 0
@@ -77361,34 +77303,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4031409440606532589, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4746834698454303542, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
-      propertyPath: _dashForce
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 4746834698454303542, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
-      propertyPath: _jumpForce
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4746834698454303542, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
-      propertyPath: _yStabilizer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4746834698454303542, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
-      propertyPath: _dashDuration
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4746834698454303542, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
-      propertyPath: _jumpCollider
-      value: 
-      objectReference: {fileID: 841261008}
-    - target: {fileID: 4746834698454303542, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
-      propertyPath: _jumpStatterForce
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4746834699155818247, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
       propertyPath: _volume
       value: 
@@ -77401,14 +77315,6 @@ PrefabInstance:
       propertyPath: _pause
       value: 
       objectReference: {fileID: 457959059}
-    - target: {fileID: 7575618301205707856, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7575618301205707857, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 7575618301205707858, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -77452,10 +77358,6 @@ PrefabInstance:
     - target: {fileID: 7575618301205707858, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7575618301205707859, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
-      propertyPath: m_FlipX
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7575618301205707860, guid: f2df6a905a0142b43aa6241743fb58bd, type: 3}
       propertyPath: m_Name

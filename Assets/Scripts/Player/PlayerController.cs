@@ -19,10 +19,7 @@ public class PlayerController : MonoBehaviour
     [Header("Components")] 
     private Rigidbody2D _rigidbody;
     private BoxCollider2D _standCollider;
-    // private CapsuleCollider2D _jumpCollider;
-    // private BoxCollider2D _jumpCollider;
-    // private BoxCollider2D[] _standAndJumpColliders;
-    
+
     [Header("Movement Variables")] 
     [SerializeField] private float _movementAcceleration = 50f;
     [SerializeField] private float _maxMoveSpeed = 10f;
@@ -37,8 +34,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _airLinearDrag = 2.5f;
     [SerializeField] private float _fallMultiplier = 14f;
     [SerializeField] private float _lowJumpFallMultiplier = 5f;
-    [SerializeField] private BoxCollider2D _jumpCollider;
-    
+
     [Header("Wall Slide")] 
     // [SerializeField] private Transform _wallChecker;
     [SerializeField] private BoxCollider2D _wallCheckerCollider;
@@ -68,8 +64,8 @@ public class PlayerController : MonoBehaviour
 
     public event UnityAction Dashed;
 
-    [Header("Debug variables")] [SerializeField]
-    private float _gravityScale;
+    [Header("Debug variables")] 
+    [SerializeField] private float _gravityScale;
     [SerializeField] private List<RaycastHit2D> _raycastHit2Ds = new List<RaycastHit2D>();
     [SerializeField] private bool _isTouchingWall;
     [SerializeField] private bool _wallSliding;
@@ -104,12 +100,6 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _player = GetComponent<PlayerShooting>();
         _standCollider = GetComponent<BoxCollider2D>();
-        SetJumpColliderOFF();
-
-        // DEBUG
-        
-        Debug.Log($"_standCollider size.y : {_standCollider.size.y}");
-        Debug.Log($"_jumpCollider size.y : {_jumpCollider.size.y}");
     }
 
     private void Update()
@@ -118,20 +108,16 @@ public class PlayerController : MonoBehaviour
         _verticalDirectionRaw = GetInputRaw().y;
         _isGrounded = IsGrounded();
         _isTouchingWall = IsTouchingWall();
-        
-        // SetWallCheckerDirection(_horizontalDirectionRaw);
-        
+
         if (_isAbleToJump)
         {
             Jump();
-            SetJumpColliderON();
         }
 
         if (IsGrounded())
         {
             _isDashed = false;
             Crouch();
-            SetJumpColliderOFF();
         }
         
         if (IsTouchingWall() && !IsGrounded())
@@ -147,24 +133,16 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded() == false && _isDashed == false)
         {
             Dash();
-            // StartCoroutine(DashCoroutine());
         }
         
         if (_wallSliding && Input.GetKeyDown(KeyCode.Space) && _horizontalDirectionRaw != 0)
         {
-            _wallJumping = true;
-            WallJumped?.Invoke();
-            Invoke(nameof(SetWallJumpingToFalse), _wallJumpTime);
-            
-            StopCoroutine(DisableMovement(0f));
-            StartCoroutine(DisableMovement(.4f));
-            _rigidbody.velocity = Vector2.zero;
-            // _rigidbody.AddForce(new Vector2(_xWallForce * -_horizontalDirectionRaw, _yWallForce), ForceMode2D.Impulse);
-            _rigidbody.AddForce(new Vector2(_xWallForce * _horizontalDirectionRaw, _yWallForce), ForceMode2D.Impulse);
+            WallJump();
         }
         
-        // Debug
+        // DEBUG
         _gravityScale = _rigidbody.gravityScale;
+        // DEBUG
     }
     
     private void FixedUpdate()
@@ -190,7 +168,6 @@ public class PlayerController : MonoBehaviour
     
     private void Jump()
     {
-        // SetJumpColliderON();
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0f);
         _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
         Jumped?.Invoke();
@@ -198,18 +175,14 @@ public class PlayerController : MonoBehaviour
 
     private void Crouch()
     {
-        // _isAbleToMove = false;
-        // _rigidbody.velocity = new Vector2(0f, 0f);
         if (Input.GetKeyDown(KeyCode.C))
         {
             _isAbleToMove = false;
-            // Debug.Log("Sit down");
         }
 
         if (Input.GetKeyUp(KeyCode.C))
         {
             _isAbleToMove = true;
-            // Debug.Log("Stand Up");
         }
     }
 
@@ -276,10 +249,7 @@ public class PlayerController : MonoBehaviour
     
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(_groundChecker.position, _circleRadius, _groundLayer);;
-
-        // Здесь проверяется попадает ли в радиус круга объект из слоя Ground
-        
+        return Physics2D.OverlapCircle(_groundChecker.position, _circleRadius, _groundLayer);
     }
 
     private bool IsTouchingWall()
@@ -296,24 +266,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void WallJump()
+    {
+        _wallJumping = true;
+        WallJumped?.Invoke();
+        Invoke(nameof(SetWallJumpingToFalse), _wallJumpTime);
+            
+        StopCoroutine(DisableMovement(0f));
+        StartCoroutine(DisableMovement(.4f));
+        _rigidbody.velocity = Vector2.zero;
+        _rigidbody.AddForce(new Vector2(_xWallForce * _horizontalDirectionRaw, _yWallForce), ForceMode2D.Impulse);
+    }
+
     private void Dash()
     {
         StopCoroutine(DisableMovement(0f));
         StartCoroutine(DisableMovement(_dashDuration));
-        // _rigidbody.gravityScale = 0f;
         _rigidbody.AddForce(new Vector2(_horizontalDirectionRaw, _yStabilizer) * _dashForce, ForceMode2D.Impulse);
         _isDashed = true;
         Dashed?.Invoke();
-    }
-
-    private IEnumerator DashCoroutine()
-    {
-        float originalGravity = _rigidbody.gravityScale;
-        _rigidbody.gravityScale = 0f;
-        _rigidbody.velocity = new Vector2(_horizontalDirectionRaw * _dashForce, 0f);
-        _isDashed = true;
-        yield return new WaitForSeconds(_dashDuration);
-        _rigidbody.gravityScale = originalGravity;
     }
     
 
@@ -353,49 +324,5 @@ public class PlayerController : MonoBehaviour
 
         // Handles.color = IsGrounded() ? Color.green : Color.red;
         // Handles.DrawWireDisc(_groundChecker.position, transform.forward, _circleRadius, 2f);
-    }
-    
-    private bool IsTouchingRightWall()
-    {
-        return false;
-    }
-
-    private void SetWallCheckerDirection(float horizontalDirection)
-    {
-        if (horizontalDirection > 0.1f)
-        {
-            _wallCheckerCollider.offset = _offsetVector;
-        }
-        else if (horizontalDirection < -0.1f)
-        {
-            _wallCheckerCollider.offset = -_offsetVector;
-        }
-        else if (horizontalDirection == 0)
-        {
-            _wallCheckerCollider.offset = Vector2.zero;
-        }
-    }
-
-    private void WallCheck()
-    {
-        RaycastHit2D rightHit = Physics2D.CircleCast((Vector2)GetComponent<BoxCollider2D>().bounds.center + _offsetVector, 0.3f,
-            Vector2.right);
-    }
-
-    private bool IsOnWall()
-    {
-        return false;
-    }
-
-    private void SetJumpColliderON()
-    {
-        _standCollider.enabled = false;
-        _jumpCollider.enabled = true;
-    }
-
-    private void SetJumpColliderOFF()
-    {
-        _standCollider.enabled = true;
-        _jumpCollider.enabled = false;
     }
 }
