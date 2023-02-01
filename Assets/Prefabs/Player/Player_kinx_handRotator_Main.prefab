@@ -648,19 +648,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27766e8573306c40bf419b6b1bc20b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootSound: {fileID: 8300000, guid: 5841042087bb57e4f91273d7cba8cfed, type: 3}
-  _shootVolume: 0.6
-  _jumpSound: {fileID: 8300000, guid: feb3b25990fd99344bd35d5081673351, type: 3}
-  _jumpVolume: 0
-  _dashSound: {fileID: 0}
-  _dashVolume: 0
-  _stepSound: {fileID: 8300000, guid: 07626fa045da94a48968c60c3c477079, type: 3}
+  _shootSounds:
+  - {fileID: 8300000, guid: 50ff4a5b9fb03a144a19dd99695ef189, type: 3}
+  - {fileID: 8300000, guid: 5841042087bb57e4f91273d7cba8cfed, type: 3}
+  - {fileID: 8300000, guid: 89b03298176f32c4b93f0fb4cb7b5fef, type: 3}
+  - {fileID: 8300000, guid: bee2ff8001b1a8b43963dda221e132ea, type: 3}
+  _shootVolume: 0.5
+  _jumpSound: {fileID: 8300000, guid: ca0c1a7629fa25f4088443841e409d30, type: 3}
+  _jumpVolume: 0.1
+  _wallJumpSound: {fileID: 8300000, guid: e0c029944de2c384c86317abb2ab849f, type: 3}
+  _wallJumpVolume: 0.2
+  _dashSound: {fileID: 8300000, guid: 8e5c1a02d4f5efa41bd6669edf05b568, type: 3}
+  _dashVolume: 0.2
+  _stepSounds:
+  - {fileID: 8300000, guid: 2e45e5e6a26c1e14499c9422a4f77cf4, type: 3}
+  - {fileID: 8300000, guid: 7bfff8c9c6ef62243ac9151f09fbd780, type: 3}
+  - {fileID: 8300000, guid: 7fcbb86119075ee47a6b3ed015509832, type: 3}
+  - {fileID: 8300000, guid: 571eb6588a40969468e313d622614bad, type: 3}
+  - {fileID: 8300000, guid: 4c05a146edc382346b29c9c0df446cf5, type: 3}
   _stepVolume: 0.3
-  _hitSound: {fileID: 8300000, guid: feedddc2a7dbe384b9eb16eee4987a66, type: 3}
-  _hitVolume: 0
-  _dieSound: {fileID: 8300000, guid: 72664a73c74012541a0020b95e554143, type: 3}
-  _dieVolume: 0
-  _pitchMultiplier: 0.655
+  _hitSounds:
+  - {fileID: 8300000, guid: 4013d16b77c15c44e9d9ae153a5c4d0a, type: 3}
+  - {fileID: 8300000, guid: d4896136700412c4abf5b3c880891bc2, type: 3}
+  - {fileID: 8300000, guid: e3cfa63d020d69343b5354c5098a3f50, type: 3}
+  - {fileID: 8300000, guid: 5813d5e14ece1264b95b0c34bb24a667, type: 3}
+  _hitVolume: 0.3
+  _dieSound: {fileID: 8300000, guid: 966c2a9e326408c4d829cc371b8b1229, type: 3}
+  _dieVolume: 0.4
+  _pitchMultiplier: 0.495
   _player: {fileID: 7487286890378862009}
   _playerShooting: {fileID: 4746834699155818247}
   _playerController: {fileID: 4746834698454303542}

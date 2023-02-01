@@ -252,7 +252,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 8
-  _deathFx: {fileID: 1559039454114822766, guid: 9079916657313e244aa1bfc4d54e013b, type: 3}
 --- !u!82 &5204593341038252637
 AudioSource:
   m_ObjectHideFlags: 0
@@ -361,12 +360,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85804a6adee887c45838cb57a6877659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootSound: {fileID: 8300000, guid: f551a37b6f02bf743aadd5627d920e51, type: 3}
-  _shootVolume: 0.4
+  _shootSound: {fileID: 8300000, guid: cfe1ceefab8a65349b8fd14465d649c0, type: 3}
+  _shootVolume: 0.3
   _turnSound: {fileID: 0}
   _turnVolume: 0
-  _explosionSound: {fileID: 8300000, guid: f47e4cf22501eed4c953218fa7be6b8a, type: 3}
-  _explosionVolume: 0.8
+  _explosionSound: {fileID: 8300000, guid: c93d92931e86a6745ad595747825d8d0, type: 3}
+  _explosionVolume: 0.4
   _hitSound: {fileID: 8300000, guid: 90a994d1d4b50974e962abe6e5d0c427, type: 3}
   _hitVolume: 0.2
   _enemyTurretShooting: {fileID: 5204593341038252639}

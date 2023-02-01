@@ -2,19 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerAudio : MonoBehaviour
 {
     [Header("Audio samples")]
-    [SerializeField] private AudioClip _shootSound;
+    [SerializeField] private AudioClip[] _shootSounds;
     [SerializeField] private float _shootVolume;
     [SerializeField] private AudioClip _jumpSound;
     [SerializeField] private float _jumpVolume;
+    [SerializeField] private AudioClip _wallJumpSound;
+    [SerializeField] private float _wallJumpVolume;
     [SerializeField] private AudioClip _dashSound;
     [SerializeField] private float _dashVolume;
-    [SerializeField] private AudioClip _stepSound;
+    [SerializeField] private AudioClip[] _stepSounds;
     [SerializeField] private float _stepVolume;
-    [SerializeField] private AudioClip _hitSound;
+    [SerializeField] private AudioClip[] _hitSounds;
     [SerializeField] private float _hitVolume;
     [SerializeField] private AudioClip _dieSound;
     [SerializeField] private float _dieVolume;
@@ -28,6 +31,11 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] private PlayerController _playerController;
 
     private AudioSource _audioSource;
+    private int _shootSamplesCount;
+    private int _hitSamplesCount;
+    private int _stepSamplesCount;
+    
+    private int _randomIndex;
 
     public float PitchMultiplier => _pitchMultiplier;
     private void OnEnable()
@@ -36,6 +44,7 @@ public class PlayerAudio : MonoBehaviour
         _playerShooting.SlowMoActivated += OnSlowMoActivated;
         _playerShooting.SlowMoDeactivated += OnSlowMoDeactivated;
         _playerController.Jumped += OnJumped;
+        _playerController.WallJumped += OnWallJumped;
         _playerController.Dashed += OnDashed;
         _player.Hitted += OnHitted;
         _player.Died += OnDied;
@@ -45,6 +54,7 @@ public class PlayerAudio : MonoBehaviour
     {
         _playerShooting.Shooted -= OnShooted;
         _playerController.Jumped -= OnJumped;
+        _playerController.WallJumped -= OnWallJumped;
         _playerController.Dashed -= OnDashed;
         _playerShooting.SlowMoActivated -= OnSlowMoActivated;
         _playerShooting.SlowMoDeactivated -= OnSlowMoDeactivated;
@@ -53,6 +63,9 @@ public class PlayerAudio : MonoBehaviour
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        _shootSamplesCount = _shootSounds.Length;
+        _hitSamplesCount = _hitSounds.Length;
+        _stepSamplesCount = _stepSounds.Length;
     }
 
     private void OnSlowMoActivated()
@@ -69,12 +82,18 @@ public class PlayerAudio : MonoBehaviour
 
     private void OnShooted()
     {
-        _audioSource.PlayOneShot(_shootSound, _shootVolume);
+        int randomIndex = Random.Range(0, _shootSamplesCount);
+        _audioSource.PlayOneShot(_shootSounds[randomIndex], _shootVolume);
     }
 
     private void OnJumped()
     {
         _audioSource.PlayOneShot(_jumpSound, _jumpVolume);
+    }
+
+    private void OnWallJumped()
+    {
+        _audioSource.PlayOneShot(_wallJumpSound, _wallJumpVolume);
     }
 
     private void OnDashed()
@@ -84,12 +103,14 @@ public class PlayerAudio : MonoBehaviour
 
     private void OnHitted()
     {
-        _audioSource.PlayOneShot(_hitSound, _hitVolume);
+        int randomIndex = Random.Range(0, _hitSamplesCount);
+        _audioSource.PlayOneShot(_hitSounds[randomIndex], _hitVolume);
     }
 
     private void OnStepped()
     {
-        _audioSource.PlayOneShot(_stepSound, _stepVolume);
+        int randomIndex = Random.Range(0, _stepSamplesCount);
+        _audioSource.PlayOneShot(_stepSounds[randomIndex], _stepVolume);
     }
 
     private void OnDied()
