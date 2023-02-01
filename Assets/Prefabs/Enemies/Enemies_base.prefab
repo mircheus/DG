@@ -401,6 +401,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drone_v2
       objectReference: {fileID: 0}
+    - target: {fileID: 3483948992760212708, guid: 52f24f3919fced74bb73bcd4521d5644, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4874064871163605437, guid: 52f24f3919fced74bb73bcd4521d5644, type: 3}
       propertyPath: _player
       value: 
