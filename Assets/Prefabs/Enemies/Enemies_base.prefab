@@ -97,13 +97,17 @@ PrefabInstance:
       propertyPath: _shootSide
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7026000608453709120, guid: 8f38efb4ab6fae0428b150387005bd33, type: 3}
+      propertyPath: _turretShooting
+      value: 
+      objectReference: {fileID: 7577078821206664471}
     - target: {fileID: 7026000608453709246, guid: 8f38efb4ab6fae0428b150387005bd33, type: 3}
       propertyPath: m_Name
       value: Turret_right
       objectReference: {fileID: 0}
     - target: {fileID: 7026000608453709246, guid: 8f38efb4ab6fae0428b150387005bd33, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7026000608453709247, guid: 8f38efb4ab6fae0428b150387005bd33, type: 3}
       propertyPath: m_RootOrder
@@ -156,6 +160,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7026000608453709247, guid: 8f38efb4ab6fae0428b150387005bd33, type: 3}
   m_PrefabInstance: {fileID: 6544480180758793113}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7577078821206664471 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3744069115982048910, guid: 8f38efb4ab6fae0428b150387005bd33, type: 3}
+  m_PrefabInstance: {fileID: 6544480180758793113}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cda8dd79cb52e24facc5eb95ef295c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6544480180824913778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -173,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4536644981585466055, guid: 5a35f435b0ae61144ba8577f4723a386, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4536644981585466060, guid: 5a35f435b0ae61144ba8577f4723a386, type: 3}
       propertyPath: m_RootOrder
@@ -313,7 +328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8212431155404752611, guid: 226086eb77c77d646940fc07163f0d15, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8212431155404752613, guid: 226086eb77c77d646940fc07163f0d15, type: 3}
       propertyPath: m_RootOrder

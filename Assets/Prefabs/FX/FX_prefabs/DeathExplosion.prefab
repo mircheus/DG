@@ -9804,9 +9804,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ac51074f398f94db901acd65a73a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duration: 0.4
+  _duration: 0.2
   explosionLight: {fileID: 8943416790383950318}
-  explosionLightIntensity: 200
+  explosionLightIntensity: 5
 --- !u!114 &3999849418475172469
 MonoBehaviour:
   m_ObjectHideFlags: 0

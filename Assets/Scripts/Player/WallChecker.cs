@@ -21,7 +21,6 @@ public class WallChecker : MonoBehaviour
     {
         _player = _playerPosition.transform.position;
         _point = collision.ClosestPoint(transform.position);
-        Debug.Log("Collided with trigger");
         _difference = _player - _point;
         _differenceX = _difference.x;
     }
