@@ -9804,9 +9804,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ac51074f398f94db901acd65a73a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duration: 0.2
+  _duration: 0.3
   explosionLight: {fileID: 8943416790383950318}
-  explosionLightIntensity: 5
+  explosionLightIntensity: 10
 --- !u!114 &3999849418475172469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19755,7 +19755,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_Sprite: {fileID: -2035033465, guid: 27e04beec893b034a8faf27c3d4ccce1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

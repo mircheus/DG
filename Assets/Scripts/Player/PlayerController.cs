@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Variables")] 
     [SerializeField] private float _movementAcceleration = 50f;
     [SerializeField] private float _maxMoveSpeed = 10f;
-    [SerializeField] private float _linearDrag = 7f; // Deacceleration или замедление персонажа
+    [SerializeField] private float _linearDrag = 7f;
 
     [Header("Ground Checker")] 
     [SerializeField] private Transform _groundChecker;
@@ -35,16 +35,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _fallMultiplier = 14f;
     [SerializeField] private float _lowJumpFallMultiplier = 5f;
 
-    [Header("Wall Slide")] 
-    // [SerializeField] private Transform _wallChecker;
+    [Header("Wall Slide")]
     [SerializeField] private BoxCollider2D _wallCheckerCollider;
-    [SerializeField] private Vector2 _offsetVector;
     [SerializeField] private float _wallSlidingSpeed;
         
     [Header("Wall Jump")] 
     [SerializeField] private float _xWallForce;
     [SerializeField] private float _yWallForce;
-    [SerializeField] private float _wallJumpTime;
+    [SerializeField] private float _wallJumpDuration;
     private WallChecker _wallChecker;
     
     [SerializeField] private ContactFilter2D _groundContactFilter;
@@ -65,17 +63,11 @@ public class PlayerController : MonoBehaviour
 
     public event UnityAction Dashed;
 
-    [Header("Debug variables")] 
-    [SerializeField] private float _gravityScale;
-    [SerializeField] private List<RaycastHit2D> _raycastHit2Ds = new List<RaycastHit2D>();
-    [SerializeField] private bool _isTouchingWall;
+    [Header("Debug variables")]
     [SerializeField] private bool _wallSliding;
-    [SerializeField] private bool _wallJumping = false;
     [SerializeField] private bool _isGrounded;
     [SerializeField] private bool _isAbleToMove = true;
     [SerializeField] private float _horizontalDirectionRaw;
-    [SerializeField] private float _verticalDirectionRaw;
-    [SerializeField] private Collider2D[] _results;
     private bool _isAbleToJump => Input.GetKeyDown(KeyCode.Space) && IsGrounded();
 
     public bool IsPlayerGrounded => _isGrounded;
@@ -107,9 +99,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         _horizontalDirectionRaw = GetInputRaw().x;
-        _verticalDirectionRaw = GetInputRaw().y;
         _isGrounded = IsGrounded();
-        _isTouchingWall = IsTouchingWall();
 
         if (_isAbleToJump)
         {
@@ -137,15 +127,10 @@ public class PlayerController : MonoBehaviour
             Dash();
         }
         
-        // if (_wallSliding && Input.GetKeyDown(KeyCode.Space) && _horizontalDirectionRaw != 0)
         if (_wallSliding && Input.GetKeyDown(KeyCode.Space))
         {
             WallJump();
         }
-        
-        // DEBUG
-        _gravityScale = _rigidbody.gravityScale;
-        // DEBUG
     }
     
     private void FixedUpdate()
@@ -229,14 +214,14 @@ public class PlayerController : MonoBehaviour
         
         _rigidbody.AddForce(new Vector2(_horizontalDirectionRaw, 0f) * _movementAcceleration);
 
-        if (Mathf.Abs(_rigidbody.velocity.x) > _maxMoveSpeed) // Ограничиваем максимальную скорость персонажа
+        if (Mathf.Abs(_rigidbody.velocity.x) > _maxMoveSpeed) 
         {
             _rigidbody.velocity =
                 new Vector2(Mathf.Sign(_rigidbody.velocity.x) * _maxMoveSpeed, _rigidbody.velocity.y);
         }
     }
     
-    private void ApplyGroundLinearDrag() // Делаем так чтобы персонаж не скользил постоянно по плоскости
+    private void ApplyGroundLinearDrag() 
     {
         float minHorizontalDirectionValue = 0.4f;
         
@@ -264,21 +249,17 @@ public class PlayerController : MonoBehaviour
     {
         if (_wallSliding)
         {
-            // CheckWallJumpDirection();
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, Mathf.Clamp(_rigidbody.velocity.y, -_wallSlidingSpeed, float.MaxValue));
         }
     }
 
     private void WallJump()
     {
-        _wallJumping = true;
         WallJumped?.Invoke();
-        Invoke(nameof(SetWallJumpingToFalse), _wallJumpTime);
         StopCoroutine(DisableMovement(0f));
-        StartCoroutine(DisableMovement(.4f));
+        StartCoroutine(DisableMovement(_wallJumpDuration));
         _rigidbody.velocity = Vector2.zero;
         var direction = _wallChecker.GetDirection();
-        Debug.Log(direction);
         _rigidbody.AddForce(new Vector2(_xWallForce * direction, _yWallForce), ForceMode2D.Impulse);
     }
 
@@ -298,19 +279,13 @@ public class PlayerController : MonoBehaviour
         _isAbleToMove = true;
         _isDashed = false;
     }
-
-    private void SetWallJumpingToFalse()
-    {
-        _wallJumping = false;
-    }
+    
 
     private void JumpShootStatter()
     {
         if (_isGrounded == false)
         {
-            // _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpStatterForce);
             _rigidbody.AddForce(Vector2.up * _jumpStatterForce, ForceMode2D.Impulse);
-            // Debug.Log("Statter triggered");
         }
     }
     
@@ -318,13 +293,5 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = IsGrounded() ? Color.green : Color.red;
         Gizmos.DrawWireSphere(_groundChecker.position, _circleRadius);
-        // Handles.color = IsTouchingWall() ? Color.green : Color.red;
-        // Handles.DrawWireCube(_wallChecker.position, new Vector2(_sizeByX, _sizeByY));
-        
-        // Handles.color = Color.white;
-        // Handles.DrawWireDisc((Vector2)GetComponent<BoxCollider2D>().bounds.center + _offsetVector, Vector3.forward, 0.3f);
-
-        // Handles.color = IsGrounded() ? Color.green : Color.red;
-        // Handles.DrawWireDisc(_groundChecker.position, transform.forward, _circleRadius, 2f);
     }
 }
