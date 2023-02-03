@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 4536644981585466049}
   - component: {fileID: 4536644981585466061}
   - component: {fileID: 5816138865693272358}
-  - component: {fileID: 5204593341038252639}
   - component: {fileID: 1142081616123297787}
   - component: {fileID: 5084553524750929913}
   - component: {fileID: 1346349003173157339}
+  - component: {fileID: 1687846177}
   - component: {fileID: 5204593341038252637}
   - component: {fileID: 5204593341038252638}
   m_Layer: 9
@@ -34,7 +34,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4536644981585466055}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 27.52, y: -2.95, z: 0.1398827}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
@@ -178,29 +178,6 @@ MonoBehaviour:
   _blinkMaterial: {fileID: 2100000, guid: d4eb38f7db2fe48d6b8d989b376a0042, type: 2}
   _duration: 0.1
   _spriteRenderer: {fileID: 4536644981585466051}
---- !u!114 &5204593341038252639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4536644981585466055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a411d94638194ed3bbee021802fd8b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _container: {fileID: 0}
-  _capacity: 4
-  _currentShootPoint: {fileID: 4296832516852008842}
-  _projectilePrefab: {fileID: 8940426276466058518, guid: daedefc04b46641e283e890b4f809df8, type: 3}
-  _projectileSpeed: 14
-  _damage: 1
-  _detector: {fileID: 5084553524750929913}
-  _shootPauseDuration: 0.5
-  _shootFX: {fileID: 2568135271962030254}
-  _shootFXRenderer: {fileID: 2568135271962030255}
-  _shootDirection: -1
 --- !u!61 &1142081616123297787
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -252,6 +229,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 8
+--- !u!114 &1687846177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4536644981585466055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cda8dd79cb52e24facc5eb95ef295c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _container: {fileID: 0}
+  _capacity: 10
+  _currentShootPoint: {fileID: 4296832516852008842}
+  _projectilePrefab: {fileID: 8940426276466058518, guid: daedefc04b46641e283e890b4f809df8, type: 3}
+  _projectileSpeed: 14
+  _damage: 1
+  _detector: {fileID: 5084553524750929913}
+  _shootPauseDuration: 0.5
+  _shootFX: {fileID: 2568135271962030254}
+  _shootSide: -1
 --- !u!82 &5204593341038252637
 AudioSource:
   m_ObjectHideFlags: 0
@@ -368,7 +367,7 @@ MonoBehaviour:
   _explosionVolume: 0.4
   _hitSound: {fileID: 8300000, guid: 90a994d1d4b50974e962abe6e5d0c427, type: 3}
   _hitVolume: 0.2
-  _enemyTurretShooting: {fileID: 5204593341038252639}
+  _turretShooting: {fileID: 1687846177}
   _turret: {fileID: 1346349003173157339}
 --- !u!1 &6162134915697847249
 GameObject:
@@ -466,10 +465,5 @@ Transform:
 --- !u!198 &2568135271962030254 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6505338092035888530, guid: ab8e52f2383c2e842b6f39be63f4193a, type: 3}
-  m_PrefabInstance: {fileID: 8783219851954971964}
-  m_PrefabAsset: {fileID: 0}
---- !u!199 &2568135271962030255 stripped
-ParticleSystemRenderer:
-  m_CorrespondingSourceObject: {fileID: 6505338092035888531, guid: ab8e52f2383c2e842b6f39be63f4193a, type: 3}
   m_PrefabInstance: {fileID: 8783219851954971964}
   m_PrefabAsset: {fileID: 0}

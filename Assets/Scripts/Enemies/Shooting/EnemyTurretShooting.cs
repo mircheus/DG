@@ -21,6 +21,7 @@ public class EnemyTurretShooting : ProjectilePool
     [SerializeField] private ParticleSystemRenderer _shootFXRenderer;
     
     // поля которые нужны только Turret
+    [Header("Shoot Side (left -1, right 1)")]
     [Range(-1, 1)] 
     [SerializeField] private int _shootDirection;
 

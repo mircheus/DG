@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class Turret : Enemy
 {
     private SpriteRenderer _spriteRenderer;
-    private EnemyTurretShooting _enemyTurretShooting;
+    private TurretShooting _turretShooting;
     private Rigidbody2D _rigidbody;
     public event UnityAction<Vector3> Exploded;
     
@@ -15,14 +15,14 @@ public class Turret : Enemy
     {
         base.Start();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _enemyTurretShooting = GetComponent<EnemyTurretShooting>();
+        _turretShooting = GetComponent<TurretShooting>();
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     protected override void Die()
     {
         _spriteRenderer.enabled = false;
-        _enemyTurretShooting.StopFiring();
+        _turretShooting.StopFiring();
         _rigidbody.simulated = false;
         Exploded?.Invoke(transform.position);
         base.Die();

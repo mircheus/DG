@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7026000607421545459}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.31, y: 0.24, z: -0.011263905}
+  m_LocalPosition: {x: 0.31, y: 0.294, z: -0.011263905}
   m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,10 +45,10 @@ GameObject:
   - component: {fileID: 7026000608453709128}
   - component: {fileID: 7026000608453709127}
   - component: {fileID: 7026000608453709126}
-  - component: {fileID: 7026000608453709125}
   - component: {fileID: 7026000608453709124}
   - component: {fileID: 7026000608453709123}
   - component: {fileID: 7026000608453709122}
+  - component: {fileID: 3744069115982048910}
   - component: {fileID: 7026000608453709121}
   - component: {fileID: 7026000608453709120}
   m_Layer: 9
@@ -65,7 +65,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7026000608453709246}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 46.3, y: -2.85, z: 0.1398827}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
@@ -209,29 +209,6 @@ MonoBehaviour:
   _blinkMaterial: {fileID: 2100000, guid: d4eb38f7db2fe48d6b8d989b376a0042, type: 2}
   _duration: 0.1
   _spriteRenderer: {fileID: 7026000608453709130}
---- !u!114 &7026000608453709125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7026000608453709246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a411d94638194ed3bbee021802fd8b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _container: {fileID: 0}
-  _capacity: 4
-  _currentShootPoint: {fileID: 7026000607421545460}
-  _projectilePrefab: {fileID: 8940426276466058518, guid: daedefc04b46641e283e890b4f809df8, type: 3}
-  _projectileSpeed: 14
-  _damage: 1
-  _detector: {fileID: 7026000608453709123}
-  _shootPauseDuration: 0.5
-  _shootFX: {fileID: 4307346512412833282}
-  _shootFXRenderer: {fileID: 4307346512412833283}
-  _shootDirection: 1
 --- !u!61 &7026000608453709124
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -283,6 +260,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 8
+--- !u!114 &3744069115982048910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7026000608453709246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cda8dd79cb52e24facc5eb95ef295c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _container: {fileID: 0}
+  _capacity: 10
+  _currentShootPoint: {fileID: 7026000607421545460}
+  _projectilePrefab: {fileID: 8940426276466058518, guid: daedefc04b46641e283e890b4f809df8, type: 3}
+  _projectileSpeed: 14
+  _damage: 1
+  _detector: {fileID: 7026000608453709123}
+  _shootPauseDuration: 0.5
+  _shootFX: {fileID: 4307346512412833282}
+  _shootSide: 0
 --- !u!82 &7026000608453709121
 AudioSource:
   m_ObjectHideFlags: 0
@@ -399,7 +398,7 @@ MonoBehaviour:
   _explosionVolume: 0.4
   _hitSound: {fileID: 8300000, guid: b1793e9ce7cbded4bb7e10c1b162a143, type: 3}
   _hitVolume: 0.1
-  _enemyTurretShooting: {fileID: 7026000608453709125}
+  _turretShooting: {fileID: 0}
   _turret: {fileID: 7026000608453709122}
 --- !u!1001 &7026000607664120720
 PrefabInstance:
@@ -461,11 +460,6 @@ PrefabInstance:
 --- !u!198 &4307346512412833282 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6505338092035888530, guid: ab8e52f2383c2e842b6f39be63f4193a, type: 3}
-  m_PrefabInstance: {fileID: 7026000607664120720}
-  m_PrefabAsset: {fileID: 0}
---- !u!199 &4307346512412833283 stripped
-ParticleSystemRenderer:
-  m_CorrespondingSourceObject: {fileID: 6505338092035888531, guid: ab8e52f2383c2e842b6f39be63f4193a, type: 3}
   m_PrefabInstance: {fileID: 7026000607664120720}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &4307346512412833285 stripped

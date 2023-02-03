@@ -4,25 +4,28 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using Random = UnityEngine.Random;
+
 
 public class LightAliver : MonoBehaviour
 {
+    [SerializeField] private float _endValue;
+    [SerializeField] private float _minDuration;
+    [SerializeField] private float _maxDuration;
     private Light2D _light;
-
+    
     private void Start()
     {
         _light = GetComponent<Light2D>();
+        StartCoroutine(FlickerLight(_minDuration, _maxDuration));
     }
 
-    private void Update()
+    private IEnumerator FlickerLight(float minDuration, float maxDuration)
     {
-        DOVirtual.Float(0f, 1.5f, 1f, ChangeLight);
-        // DOVirtual.Float(0, 1.5f, 0.5f,ChangeLight).OnComplete(() => DOVirtual.Float())
-            
-    }
-    // DOVirtual.Float(0, explosionLightIntensity,  _duration, ChangeLight).OnComplete(() => DOVirtual.Float(explosionLightIntensity, 0, .1f, ChangeLight));
-    private void ChangeLight(float x)
-    {
-        _light.intensity = x;
+        while (true)
+        {
+            _light.enabled = !_light.enabled;
+            yield return new WaitForSeconds(Random.Range(minDuration, maxDuration));
+        }
     }
 }

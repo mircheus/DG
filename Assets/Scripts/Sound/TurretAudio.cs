@@ -16,20 +16,20 @@ public class TurretAudio : MonoBehaviour
     [SerializeField] private AudioClip _hitSound;
     [SerializeField] private float _hitVolume;
     
-    [SerializeField] private EnemyTurretShooting _enemyTurretShooting;
+    [SerializeField] private TurretShooting _turretShooting;
     [SerializeField] private Turret _turret;
 
     private AudioSource _audioSource;
     private void OnEnable()
     {
-        _enemyTurretShooting.Shooted += OnShooted;
+        _turretShooting.Shooted += OnShooted;
         _turret.Hitted += OnHitted;
         _turret.Died += OnDied;
     }
 
     private void OnDisable()
     {
-        _enemyTurretShooting.Shooted -= OnShooted;
+        _turretShooting.Shooted -= OnShooted;
         _turret.Hitted -= OnHitted;
         _turret.Died -= OnDied;
     }
