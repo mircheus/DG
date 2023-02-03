@@ -14,8 +14,6 @@ public class EnemyShooting : ProjectilePool
     [SerializeField] protected PlayerDetection _detector;
     [SerializeField] protected float _shootPauseDuration;
     [SerializeField] protected ParticleSystem _shootFX;
-    // [SerializeField] protected ParticleSystemRenderer _shootFXRenderer;
-    // [SerializeField] protected Vector2 _shootDirection;
 
     protected Coroutine _firingCoroutine;
     protected bool _isPlayerDetected = false;
@@ -33,7 +31,7 @@ public class EnemyShooting : ProjectilePool
         _detector.PlayerDetected -= OnPlayerDetected;
     }
     
-    protected void Start()
+    protected virtual void Start()
     {
         Initialize(_projectilePrefab, _projectileSpeed, _damage);
     }
@@ -55,7 +53,7 @@ public class EnemyShooting : ProjectilePool
 
     protected void ShootProjectile(Vector2 shootDirection)
     {
-        if (TryGetProjectile(out Projectile projectile) && _isFiring)
+        if (TryGetProjectile(out Projectile projectile))
         {
             projectile.transform.position = _currentShootPoint.position;
             projectile.SetDirection(shootDirection);
@@ -69,7 +67,7 @@ public class EnemyShooting : ProjectilePool
     {
         var waitFor = new WaitForSeconds(_shootPauseDuration);
 
-        while (true)
+        while (_isFiring)
         {
             ShootProjectile(GetDirection());
             yield return waitFor;

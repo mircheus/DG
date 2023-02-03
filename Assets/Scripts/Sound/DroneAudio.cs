@@ -17,7 +17,7 @@ public class DroneAudio : MonoBehaviour
     [SerializeField] private AudioClip _hitSound;
     [SerializeField] private float _hitVolume;
     
-    [SerializeField] private EnemyDroneShooting _enemyDroneShooting;
+    [SerializeField] private DroneShooting _droneShooting;
     [SerializeField] private PlayerDetection _playerDetection;
     [SerializeField] private Drone _drone;
 
@@ -25,7 +25,7 @@ public class DroneAudio : MonoBehaviour
 
     private void OnEnable()
     {
-        _enemyDroneShooting.Shooted += OnShooted;
+        _droneShooting.Shooted += OnShooted;
         _playerDetection.PlayerDetected += OnAlarmed;
         _drone.Died += OnDied;
         _drone.Hitted += OnHitted;
@@ -33,7 +33,7 @@ public class DroneAudio : MonoBehaviour
 
     private void OnDisable()
     {
-        _enemyDroneShooting.Shooted -= OnShooted;
+        _droneShooting.Shooted -= OnShooted;
         _playerDetection.PlayerDetected -= OnAlarmed;
         _drone.Died -= OnDied;
         _drone.Hitted -= OnHitted;

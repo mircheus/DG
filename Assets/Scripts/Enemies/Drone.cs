@@ -8,7 +8,7 @@ public class Drone : Enemy
 {
     private Light2D _light;
     private SpriteRenderer _spriteRenderer;
-    private EnemyDroneShooting _enemyDroneShooting;
+    private DroneShooting _droneShooting;
     private Rigidbody2D _rigidbody;
 
     public event UnityAction<Vector3> Exploded; 
@@ -16,7 +16,7 @@ public class Drone : Enemy
     {
         base.Start();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _enemyDroneShooting = GetComponent<EnemyDroneShooting>();
+        _droneShooting = GetComponent<DroneShooting>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _light = GetComponentInChildren<Light2D>();
     }
@@ -24,7 +24,7 @@ public class Drone : Enemy
     {
         _spriteRenderer.enabled = false;
         _light.intensity = 0;
-        _enemyDroneShooting.StopFiring();
+        _droneShooting.StopFiring();
         _rigidbody.simulated = false;
         Exploded?.Invoke(transform.position);
         base.Die();

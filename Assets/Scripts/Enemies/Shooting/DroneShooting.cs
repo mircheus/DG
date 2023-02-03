@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Rendering.Universal;
 
-public class DroneShooting : MonoBehaviour
+public class DroneShooting : EnemyShooting
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Player _player;
+    [SerializeField] private AIPath _aiPath;
+
+    public event UnityAction PlayerDetected;
+    public Player Player => _player;
+
+    protected override void Start()
     {
-        
+        base.Start();
+        _aiPath.canMove = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnPlayerDetected()
     {
-        
+        base.OnPlayerDetected();
+        _aiPath.canMove = true;
+        PlayerDetected?.Invoke();
+    }
+    
+    protected override Vector2 GetDirection()
+    {
+        return (_player.transform.position - _currentShootPoint.position).normalized;
     }
 }

@@ -77275,7 +77275,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1834796980104737884, guid: 57cb6a44328551d4fb36662b7683d4a2, type: 3}
+    - target: {fileID: 192244403069890051, guid: 57cb6a44328551d4fb36662b7683d4a2, type: 3}
       propertyPath: _player
       value: 
       objectReference: {fileID: 898773495}
@@ -77283,18 +77283,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 898773490}
-    - target: {fileID: 3110510230420772135, guid: 57cb6a44328551d4fb36662b7683d4a2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3110510231052507494, guid: 57cb6a44328551d4fb36662b7683d4a2, type: 3}
       propertyPath: _player
       value: 
       objectReference: {fileID: 898773495}
-    - target: {fileID: 4275029160821884455, guid: 57cb6a44328551d4fb36662b7683d4a2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6544480180141911539, guid: 57cb6a44328551d4fb36662b7683d4a2, type: 3}
       propertyPath: m_Name
       value: Enemies
@@ -77341,10 +77333,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6544480180141911541, guid: 57cb6a44328551d4fb36662b7683d4a2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7216961915297392053, guid: 57cb6a44328551d4fb36662b7683d4a2, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
