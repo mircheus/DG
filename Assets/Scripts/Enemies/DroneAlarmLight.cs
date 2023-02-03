@@ -36,7 +36,6 @@ public class DroneAlarmLight : MonoBehaviour
     private void OnPlayerDetected()
     {
         DOTween.To(() => _droneLight.color, x => _droneLight.color = x, _alarmColor, 1f);
-        Debug.Log("Player detected");
     }
 
     private void DirectLightToPlayer()
