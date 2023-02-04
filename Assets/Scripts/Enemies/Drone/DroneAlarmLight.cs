@@ -7,7 +7,6 @@ using UnityEngine.Rendering.Universal;
 
 public class DroneAlarmLight : MonoBehaviour
 {
-    // [SerializeField] private DroneShooting _droneShooting;
     private Player _player;
     private Light2D _droneLight;
     private Color _alarmColor = Color.red;

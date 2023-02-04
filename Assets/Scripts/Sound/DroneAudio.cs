@@ -16,7 +16,6 @@ public class DroneAudio : MonoBehaviour
     [SerializeField] private float _explosionVolume;
     [SerializeField] private AudioClip _hitSound;
     [SerializeField] private float _hitVolume;
-    
     [SerializeField] private DroneShooting _droneShooting;
     [SerializeField] private PlayerDetection _playerDetection;
     [SerializeField] private Drone _drone;

@@ -6,6 +6,7 @@ using UnityEngine;
 public class TurretFxPool : FXPool
 {
     [SerializeField] private Turret[] _turrets;
+    
     private void OnEnable()
     {
         foreach (var turret in _turrets)

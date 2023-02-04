@@ -24,10 +24,8 @@ public class AnimationSwitcher : MonoBehaviour
     private int _isCrouching = Animator.StringToHash("isCrouching");
     private int _isGrounded = Animator.StringToHash("isGrounded");
     private int _isDied = Animator.StringToHash("isDied");
-    // Walljump stuff
     private int _isWallSliding = Animator.StringToHash("isWallSliding");
     private int _isWallJumping = Animator.StringToHash("isWallJumping");
-
     private float _horizontalMovement;
     
     [Header("Debug variables")]
@@ -93,7 +91,6 @@ public class AnimationSwitcher : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _animator.SetBool(_isJumping, true);
-            // _animator.SetBool(_isWallSliding, false);
         }
     }
 
@@ -115,7 +112,6 @@ public class AnimationSwitcher : MonoBehaviour
     {
         _animator.SetBool(_isWallSliding, true);
         _animator.SetBool(_isWallJumping, false);
-        
         _animator.SetBool(_isJumping, false);
     }
 
@@ -126,7 +122,6 @@ public class AnimationSwitcher : MonoBehaviour
         TurnCharacter();
     }
     
-    // используется в Kinx и Knightside
     private void Shoot()
     {
         if (Input.GetMouseButtonDown(0))
@@ -140,24 +135,16 @@ public class AnimationSwitcher : MonoBehaviour
     {
         _spriteRenderer.flipX = true;
         _handGunPosition.position += new Vector3(-0.12f, 0, 0);
-        // Debug.Log($"x:{_handGunPosition.position.x} y:{_handGunPosition.position.y} z:{_handGunPosition.position.z}");
     }
 
     private void TurnCharacterRight()
     {
         _spriteRenderer.flipX = false;
         _handGunPosition.position += new Vector3(0.12f, 0, 0);
-        // Debug.Log($"x:{_handGunPosition.position.x} y:{_handGunPosition.position.y} z:{_handGunPosition.position.z}");
     }
-
-
-
+    
     private bool IsGrounded()
     {
-        // bool isTouchingGround = Physics2D.OverlapCircle(_groundChecker.position, 0.3f, _groundLayer);
-        // _animator.SetBool(_isGrounded, isTouchingGround);
-        // Debug.Log(_playerController.IsPlayerGrounded);
-
         if (_playerController.IsPlayerGrounded)
         {
             _animator.SetBool(_isWallSliding, false);
@@ -165,12 +152,10 @@ public class AnimationSwitcher : MonoBehaviour
         }
         
         return _playerController.IsPlayerGrounded;
-        // return Physics2D.OverlapCircle(_groundChecker.position, 0.3f, _groundLayer);
     }
 
     private void OnDied()
     {
-        Debug.Log("OnDied");
         _animator.SetTrigger(_isDied);
     }
 }

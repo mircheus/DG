@@ -11,13 +11,15 @@ public class Scroller : MonoBehaviour
     [SerializeField] private float _x, _y;
     [SerializeField] private float _colorChangeDuration = 0.5f;
     [SerializeField] private float _introDelay = 13.4f;
-    [SerializeField] private bool _diskoteka = false;
+    [SerializeField] private bool _isDisco = false;
+    
     private Color[] _colors = new[] {Color.blue, Color.green, Color.magenta, Color.cyan, Color.yellow, Color.white};
+    
     private void Start()
     {
         Sequence sequence = DOTween.Sequence();
         sequence.SetDelay(_introDelay, false);
-        if (_diskoteka)
+        if (_isDisco)
         {
             for (int i = 0; i < _colors.Length; i++)
             {

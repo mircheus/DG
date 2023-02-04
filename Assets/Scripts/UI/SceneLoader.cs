@@ -18,6 +18,6 @@ public class SceneLoader : MonoBehaviour
     
     public void Exit()
     {
-        Application.Quit();
+        Application.Quit(0);
     }
 }

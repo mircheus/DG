@@ -7,7 +7,6 @@ public class ButtonTextMover : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 {
     [SerializeField] private RectTransform _rectTransform;
     [SerializeField] private int _yOffset;
-    // private int _yOffset = 15;
 
     public void OnPointerDown(PointerEventData eventData)
     {

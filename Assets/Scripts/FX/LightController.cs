@@ -7,8 +7,8 @@ using DG.Tweening;
 public class LightController : MonoBehaviour
 {
     [SerializeField] private float _duration = 0.1f;
-    public UnityEngine.Rendering.Universal.Light2D explosionLight;
-    public float explosionLightIntensity;
+    [SerializeField] private UnityEngine.Rendering.Universal.Light2D explosionLight;
+    [SerializeField] private float explosionLightIntensity;
 
     private void OnEnable()
     {

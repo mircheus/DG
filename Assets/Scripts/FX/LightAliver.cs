@@ -9,9 +9,9 @@ using Random = UnityEngine.Random;
 
 public class LightAliver : MonoBehaviour
 {
-    [SerializeField] private float _endValue;
     [SerializeField] private float _minDuration;
     [SerializeField] private float _maxDuration;
+    
     private Light2D _light;
     
     private void Start()

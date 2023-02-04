@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class Pause : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseMenu;
+    
     private bool _isPaused = false;
     
     public event UnityAction Paused;

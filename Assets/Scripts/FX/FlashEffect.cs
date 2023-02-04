@@ -18,7 +18,7 @@ public class FlashEffect : MonoBehaviour
         _originalMaterial = _spriteRenderer.material;
     }
 
-    public void Blink() // переименовать, название странное
+    public void Blink()
     {
         if (_flashCoroutine != null)
         {

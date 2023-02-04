@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyDisabler : MonoBehaviour
 {
     [SerializeField] private float _secondsBeforeDisabling;
+    
     public void DisableEnemy(Enemy enemy) 
     {
         StartCoroutine(DisableIn(_secondsBeforeDisabling, enemy));

@@ -23,7 +23,6 @@ public class EnemyPatrol : MonoBehaviour
     private bool _isMovingRight;
     private Vector3 _initialScale;
     
-
     [Header("Enemy Animator")] 
     private Animator _animator; 
 
@@ -84,10 +83,7 @@ public class EnemyPatrol : MonoBehaviour
     {
         _idleTimer = 0;
         _animator.SetBool("Moving", true);
-        
-        // Make enemy face direction
         _enemy.localScale = new Vector3(Mathf.Abs(_initialScale.x) * direction , _initialScale.y, _initialScale.z);
-        // Move in that direction
         _enemy.position = new Vector3(_enemy.position.x + _speed * direction * Time.deltaTime, _enemy.position.y, _enemy.position.z);
     }
 }

@@ -56,28 +56,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _dashDuration;
     [SerializeField] private bool _isDashed = false;
     [SerializeField] private float _yStabilizer = 0.5f;
-    
-    public event UnityAction WallJumped;
-    public event UnityAction WallSliding;
-    public event UnityAction Jumped;
-
-    public event UnityAction Dashed;
 
     [Header("Debug variables")]
     [SerializeField] private bool _wallSliding;
     [SerializeField] private bool _isGrounded;
     [SerializeField] private bool _isAbleToMove = true;
     [SerializeField] private float _horizontalDirectionRaw;
-    private bool _isAbleToJump => Input.GetKeyDown(KeyCode.Space) && IsGrounded();
-
-    public bool IsPlayerGrounded => _isGrounded;
-
-    public float HorizontalInputDirection => _horizontalDirectionRaw;
-
-
-    private bool ChangingDirection => (_rigidbody.velocity.x > 0f && _horizontalDirectionRaw < 0f) ||
-                                      (_rigidbody.velocity.x < 0f && _horizontalDirectionRaw > 0f); // Избавляемся от скольжения при повороте персонажа 
     
+    private bool ChangingDirection => (_rigidbody.velocity.x > 0f && _horizontalDirectionRaw < 0f) ||
+                                      (_rigidbody.velocity.x < 0f && _horizontalDirectionRaw > 0f);
+    private bool _isAbleToJump => Input.GetKeyDown(KeyCode.Space) && IsGrounded();
+    
+    public bool IsPlayerGrounded => _isGrounded;
+    public float HorizontalInputDirection => _horizontalDirectionRaw;
+    
+        
+    public event UnityAction WallJumped;
+    public event UnityAction WallSliding;
+    public event UnityAction Jumped;
+    public event UnityAction Dashed;
     
     private void OnEnable()
     {

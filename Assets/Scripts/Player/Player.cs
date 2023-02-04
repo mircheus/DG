@@ -9,12 +9,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private int _maxHealth;
     [SerializeField] private Pause _pause;
-    public event UnityAction Hitted;
-    public event UnityAction<int> HealthChanged;
-    public event UnityAction Died;
 
     private int _currentHealth;
-    
     private FlashEffect _damageFX;
     private PlayerController _playerController;
     private PlayerShooting _playerShooting;
@@ -22,6 +18,10 @@ public class Player : MonoBehaviour
 
     public int MaxHealth => _maxHealth;
     public int CurrentHealth => _currentHealth;
+    
+    public event UnityAction Hitted;
+    public event UnityAction<int> HealthChanged;
+    public event UnityAction Died;
 
     private void OnEnable()
     {

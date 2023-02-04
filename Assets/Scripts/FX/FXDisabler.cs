@@ -7,6 +7,7 @@ using UnityEngine.Animations;
 public class FXDisabler : MonoBehaviour
 {
     [SerializeField] private float _seconds = 0.3f;
+    
     private Coroutine _disabler;
 
     private void OnEnable()

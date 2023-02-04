@@ -22,7 +22,6 @@ public class MeleeEnemy : MonoBehaviour
     private Animator _animator;
     private EnemyPatrol _enemyPatrol;
     private bool _isAlive = true;
-    // private Enemy _enemy; // чтобы подписаться на событие 
 
     private void OnEnable()
     {
@@ -33,6 +32,7 @@ public class MeleeEnemy : MonoBehaviour
     {
         _enemy.Died -= OnDied;
     }
+    
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -67,15 +67,7 @@ public class MeleeEnemy : MonoBehaviour
 
     private void OnDied()
     {
-        // _animator.SetBool("Die",true);
         _isAlive = false;
-        Debug.Log("OnDied triggered");
-        // Debug.Log("Died");
-    }
-
-    private void ChasePlayer()
-    {
-        
     }
 
     private bool PlayerInSight()

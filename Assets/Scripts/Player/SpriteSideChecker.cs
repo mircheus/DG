@@ -36,14 +36,10 @@ public class SpriteSideChecker : MonoBehaviour
     private void TurnCharacterLeft()
     {
         _spriteRenderer.flipX = true;
-        // _handGunPosition.position += new Vector3(-0.12f, 0, 0);
-        // Debug.Log($"x:{_handGunPosition.position.x} y:{_handGunPosition.position.y} z:{_handGunPosition.position.z}");
     }
 
     private void TurnCharacterRight()
     {
         _spriteRenderer.flipX = false;
-        // _handGunPosition.position += new Vector3(0.12f, 0, 0);
-        // Debug.Log($"x:{_handGunPosition.position.x} y:{_handGunPosition.position.y} z:{_handGunPosition.position.z}");
     }
 }

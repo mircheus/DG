@@ -9,7 +9,6 @@ public class ProjectilePool : MonoBehaviour
     [SerializeField] private GameObject _container;
     [SerializeField] private int _capacity;
     
-    // попробуем очередь ради эксперимента 
     private Queue<Projectile> _pool = new Queue<Projectile>();
 
     protected void Initialize(Projectile prefab, float speed, int damage)

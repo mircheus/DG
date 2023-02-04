@@ -10,8 +10,9 @@ public class Drone : Enemy
     private SpriteRenderer _spriteRenderer;
     private DroneShooting _droneShooting;
     private Rigidbody2D _rigidbody;
-
+    
     public event UnityAction<Vector3> Exploded; 
+    
     protected override void Start()
     {
         base.Start();
@@ -20,6 +21,7 @@ public class Drone : Enemy
         _rigidbody = GetComponent<Rigidbody2D>();
         _light = GetComponentInChildren<Light2D>();
     }
+    
     protected override void Die()
     {
         _spriteRenderer.enabled = false;

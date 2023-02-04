@@ -8,14 +8,14 @@ using UnityEngine.Events;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] protected int _maxHealth;
+    
     private EnemyDisabler _enemyDisabler;
-
+    protected FlashEffect _damageFx;
+    protected int _currentHealth;
+    
     public event UnityAction Died;
     public event UnityAction Hitted;
     
-    protected FlashEffect _damageFx;
-    protected int _currentHealth;
-
     protected virtual void Start()
     {
         _damageFx = GetComponent<FlashEffect>();
@@ -37,7 +37,10 @@ public class Enemy : MonoBehaviour
     
     protected void OnParticleCollision(GameObject other)
     {
-        TakeDamage(1);
+        if (other.TryGetComponent(out BulletParticle playerBulletParticle))
+        {
+            TakeDamage(playerBulletParticle.Damage);
+        }
     }
 
     protected virtual void Die()

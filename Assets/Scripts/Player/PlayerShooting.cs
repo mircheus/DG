@@ -11,10 +11,14 @@ using Vector2 = UnityEngine.Vector2;
 public class PlayerShooting : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _particleProjectile;
+    [SerializeField] private int _damage;
     [SerializeField] private CinemachineImpulseSource _cameraImpulse;
     [Range(0,1)]
     [SerializeField] private float _slowMoValue;
     [SerializeField] private Volume _volume;
+
+    public int Damage => _damage;
+    
     public event UnityAction Shooted;
     public event UnityAction SlowMoActivated;
     public event UnityAction SlowMoDeactivated;

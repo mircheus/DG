@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerFxPool : FXPool
 {
-    [SerializeField] private ParticleCollision _particleCollision;
+    [SerializeField] private BulletParticle _bulletParticle;
     
     private void OnEnable()
     {
-        _particleCollision.ProjectileCollided += EnableFX;
+        _bulletParticle.ProjectileCollided += EnableFX;
     }
 
     private void OnDestroy()
     {
-        _particleCollision.ProjectileCollided -= EnableFX;
+        _bulletParticle.ProjectileCollided -= EnableFX;
     }
 }

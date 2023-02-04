@@ -15,15 +15,12 @@ public class Ninja : Enemy
         base.Start();
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        // Debug.Log(_currentHealth);
     }
     
-
     protected override void TakeDamage(int damage)
     {
         base.TakeDamage(1);
         _animator.SetTrigger(_hurt);
-        // Debug.Log("ninja damaged");
     }
 
     protected override void Die()
