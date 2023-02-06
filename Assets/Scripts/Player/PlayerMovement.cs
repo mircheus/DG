@@ -12,7 +12,7 @@ using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 { 
     [Header("Layer Masks")] 
     [SerializeField] private LayerMask _groundLayer;

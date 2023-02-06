@@ -13,7 +13,7 @@ public class AnimationSwitcher : MonoBehaviour
     [SerializeField] private Transform _groundChecker;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private Transform _handGunPosition;
-    [SerializeField] private PlayerController _playerController;
+    [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private Player _player;
     
     private Animator _animator;
@@ -33,15 +33,15 @@ public class AnimationSwitcher : MonoBehaviour
     
     private void OnEnable()
     {
-        _playerController.WallJumped += OnWallJumped;
-        _playerController.WallSliding += OnWallSlide;
+        _playerMovement.WallJumped += OnWallJumped;
+        _playerMovement.WallSliding += OnWallSlide;
         _player.Died += OnDied;
     }
     
     private void OnDisable()
     {
-        _playerController.WallJumped -= OnWallJumped;
-        _playerController.WallSliding -= OnWallSlide;
+        _playerMovement.WallJumped -= OnWallJumped;
+        _playerMovement.WallSliding -= OnWallSlide;
         _player.Died -= OnDied;
     }
 
@@ -145,13 +145,13 @@ public class AnimationSwitcher : MonoBehaviour
     
     private bool IsGrounded()
     {
-        if (_playerController.IsPlayerGrounded)
+        if (_playerMovement.IsPlayerGrounded)
         {
             _animator.SetBool(_isWallSliding, false);
             _animator.SetBool(_isWallJumping, false);
         }
         
-        return _playerController.IsPlayerGrounded;
+        return _playerMovement.IsPlayerGrounded;
     }
 
     private void OnDied()

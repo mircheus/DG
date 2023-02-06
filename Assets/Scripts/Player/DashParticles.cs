@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class DashParticles : MonoBehaviour
 {
-    [SerializeField] private PlayerController _playerController;
+    [SerializeField] private PlayerMovement _playerMovement;
     
     private ParticleSystemRenderer _particleSystemRenderer;
     private ParticleSystem _particleSystem;
 
     private void OnEnable()
     {
-        _playerController.Dashed += OnDashed;
+        _playerMovement.Dashed += OnDashed;
     }
 
     private void OnDisable()
     {
-        _playerController.Dashed -= OnDashed;
+        _playerMovement.Dashed -= OnDashed;
     }
 
     private void Start()
@@ -28,11 +28,11 @@ public class DashParticles : MonoBehaviour
 
     private void OnDashed()
     {
-        if (_playerController.HorizontalInputDirection == 1)
+        if (_playerMovement.HorizontalInputDirection == 1)
         {
             _particleSystemRenderer.flip = Vector3.left;
         }
-        else if (_playerController.HorizontalInputDirection <= 0)
+        else if (_playerMovement.HorizontalInputDirection <= 0)
         {
             _particleSystemRenderer.flip = Vector3.right;
         }

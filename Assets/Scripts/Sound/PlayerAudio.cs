@@ -28,7 +28,7 @@ public class PlayerAudio : MonoBehaviour
     
     [SerializeField] private Player _player;
     [SerializeField] private PlayerShooting _playerShooting;
-    [SerializeField] private PlayerController _playerController;
+    [SerializeField] private PlayerMovement _playerMovement;
 
     private AudioSource _audioSource;
     private int _shootSamplesCount;
@@ -43,9 +43,9 @@ public class PlayerAudio : MonoBehaviour
         _playerShooting.Shooted += OnShooted;
         _playerShooting.SlowMoActivated += OnSlowMoActivated;
         _playerShooting.SlowMoDeactivated += OnSlowMoDeactivated;
-        _playerController.Jumped += OnJumped;
-        _playerController.WallJumped += OnWallJumped;
-        _playerController.Dashed += OnDashed;
+        _playerMovement.Jumped += OnJumped;
+        _playerMovement.WallJumped += OnWallJumped;
+        _playerMovement.Dashed += OnDashed;
         _player.Hitted += OnHitted;
         _player.Died += OnDied;
     }
@@ -53,9 +53,9 @@ public class PlayerAudio : MonoBehaviour
     private void OnDisable()
     {
         _playerShooting.Shooted -= OnShooted;
-        _playerController.Jumped -= OnJumped;
-        _playerController.WallJumped -= OnWallJumped;
-        _playerController.Dashed -= OnDashed;
+        _playerMovement.Jumped -= OnJumped;
+        _playerMovement.WallJumped -= OnWallJumped;
+        _playerMovement.Dashed -= OnDashed;
         _playerShooting.SlowMoActivated -= OnSlowMoActivated;
         _playerShooting.SlowMoDeactivated -= OnSlowMoDeactivated;
     }

@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 
     private int _currentHealth;
     private FlashEffect _damageFX;
-    private PlayerController _playerController;
+    private PlayerMovement _playerMovement;
     private PlayerShooting _playerShooting;
     private AnimationSwitcher _animationSwitcher;
 
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     {
         Time.timeScale = 1f;
         _damageFX = GetComponent<FlashEffect>();
-        _playerController = GetComponent<PlayerController>();
+        _playerMovement = GetComponent<PlayerMovement>();
         _playerShooting = GetComponent<PlayerShooting>();
         _animationSwitcher = GetComponent<AnimationSwitcher>();
         _currentHealth = _maxHealth;
@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
 
     private void SwitchControlScriptsTo(bool value)
     {
-        _playerController.enabled = value;
+        _playerMovement.enabled = value;
         _playerShooting.enabled = value;
         _animationSwitcher.enabled = value;
     }
