@@ -258,7 +258,7 @@ public class PlayerController : MonoBehaviour
         StopCoroutine(DisableMovement(0f));
         StartCoroutine(DisableMovement(_wallJumpDuration));
         _rigidbody.velocity = Vector2.zero;
-        var direction = _wallChecker.GetDirection();
+        var direction = _wallChecker.OppositeDirectionToWall;
         _rigidbody.AddForce(new Vector2(_xWallForce * direction, _yWallForce), ForceMode2D.Impulse);
     }
 

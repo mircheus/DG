@@ -5,32 +5,24 @@ using UnityEngine;
 
 public class WallChecker : MonoBehaviour
 {
-    [SerializeField] private Vector2 _player;
-    [SerializeField] private Vector2 _point;
-    [SerializeField] private Vector2 _difference;
-    [SerializeField] private float _differenceX;
-    
-    private Player _playerPosition;
-    
-    
+    private Vector2 _playerPosition;
+    private Vector2 _point;
+    private Vector2 _difference;
+    private Player _player;
+    private int _oppositeDirectionToWall;
+
+    public int OppositeDirectionToWall => _oppositeDirectionToWall;
 
     private void Start()
     {
-        _playerPosition = GetComponentInParent<Player>();
-        _differenceX = 1;
+        _player = GetComponentInParent<Player>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _player = _playerPosition.transform.position;
+        _playerPosition = _player.transform.position;
         _point = collision.ClosestPoint(transform.position);
-        _difference = _player - _point;
-        _differenceX = _difference.x;
-    }
-
-    public int GetDirection()
-    {
-        var sign = Mathf.Sign(_differenceX);
-        return (int)sign;
+        _difference = _playerPosition - _point;
+        _oppositeDirectionToWall = (int)Mathf.Sign(_difference.x);
     }
 }
