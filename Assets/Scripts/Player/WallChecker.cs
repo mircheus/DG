@@ -9,7 +9,10 @@ public class WallChecker : MonoBehaviour
     [SerializeField] private Vector2 _point;
     [SerializeField] private Vector2 _difference;
     [SerializeField] private float _differenceX;
+    
     private Player _playerPosition;
+    
+    
 
     private void Start()
     {

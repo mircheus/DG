@@ -14,7 +14,7 @@ public class NinjaAudo : MonoBehaviour
     [SerializeField] private float _deathVolume;
 
     [SerializeField] private Ninja _ninja;
-    private MeleeEnemy _meleeEnemy;
+    private MeleeAttack _meleeAttack;
     private AudioSource _audioSource;
     
     private void OnEnable()

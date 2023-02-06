@@ -9,21 +9,14 @@ public class Patrol : MonoBehaviour
 {
     [SerializeField] private float _leftEdge;
     [SerializeField] private float _rightEdge;
-    
     [SerializeField] private float _speed;
     [SerializeField] private float _idleDuration;
     
-    [Header("Debug Variables________________________________/")]
-    [SerializeField] private Vector3 _rightPoint;
-    [SerializeField] private Vector3 _leftPoint;
-    [SerializeField] private int _currentDirection = 1;
-    [SerializeField] private bool _isReachedPatrolPoint;
-    [SerializeField] private bool _isCoroutineNull;
-    [SerializeField] private bool _coroutineFinished = false;
-    
+    private Vector3 _rightPoint;
+    private Vector3 _leftPoint;
+    private int _currentDirection = 1;
     private Coroutine _waitCoroutine;
     private Vector3 _initialScale;
-
     private Animator _animator;
     private int _moving = Animator.StringToHash("Moving");
 
@@ -38,10 +31,7 @@ public class Patrol : MonoBehaviour
 
     private void Update()
     {
-        _isCoroutineNull = _waitCoroutine == null;
-        _isReachedPatrolPoint = IsReachedPatrolPoint(_currentDirection);
-        
-        if (_isReachedPatrolPoint == false)
+        if (IsReachedPatrolPoint(_currentDirection) == false)
         {
             Move(_currentDirection);
         }
@@ -50,11 +40,6 @@ public class Patrol : MonoBehaviour
             if (_waitCoroutine == null)
             {
                 _waitCoroutine = StartCoroutine(WaitThenGoBack(_idleDuration));
-            }
-
-            if (_coroutineFinished)
-            {
-                _waitCoroutine = null;
             }
         }
     }
@@ -89,12 +74,11 @@ public class Patrol : MonoBehaviour
 
     private IEnumerator WaitThenGoBack(float time)
     {
-        _coroutineFinished = false;
         _animator.SetBool(_moving, false);
         yield return new WaitForSeconds(time);
         _currentDirection *= -1;
         FlipSpriteByX(_currentDirection);
-        _coroutineFinished = true;
+        _waitCoroutine = null;
     }
 
     private void OnDrawGizmos()
