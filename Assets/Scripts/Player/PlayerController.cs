@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _wallSliding;
     [SerializeField] private bool _isGrounded;
     [SerializeField] private bool _isAbleToMove = true;
+    [SerializeField] private bool _isTouchingWall;
     [SerializeField] private float _horizontalDirectionRaw;
     
     private bool ChangingDirection => (_rigidbody.velocity.x > 0f && _horizontalDirectionRaw < 0f) ||
@@ -97,8 +98,9 @@ public class PlayerController : MonoBehaviour
     {
         _horizontalDirectionRaw = GetInputRaw().x;
         _isGrounded = IsGrounded();
+        _isTouchingWall = IsTouchingWall();
 
-        if (_isAbleToJump)
+        if (_isAbleToJump && IsTouchingWall() == false)
         {
             Jump();
         }
@@ -109,7 +111,7 @@ public class PlayerController : MonoBehaviour
             Crouch();
         }
         
-        if (IsTouchingWall() && !IsGrounded())
+        if (IsTouchingWall() && IsGrounded() == false)
         {
             _wallSliding = true;
             WallSliding?.Invoke();
@@ -123,8 +125,8 @@ public class PlayerController : MonoBehaviour
         {
             Dash();
         }
-        
-        if (_wallSliding && Input.GetKeyDown(KeyCode.Space))
+
+        if (_wallSliding && Input.GetKeyDown(KeyCode.Space) && IsGrounded() == false)
         {
             WallJump();
         }
