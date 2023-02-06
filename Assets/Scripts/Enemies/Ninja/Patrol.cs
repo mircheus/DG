@@ -13,7 +13,7 @@ public class Patrol : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _idleDuration;
     
-    [Header("Debug Variables")]
+    [Header("Debug Variables________________________________/")]
     [SerializeField] private Vector3 _rightPoint;
     [SerializeField] private Vector3 _leftPoint;
     [SerializeField] private int _currentDirection = 1;
@@ -23,7 +23,7 @@ public class Patrol : MonoBehaviour
     
     private Coroutine _waitCoroutine;
     private Vector3 _initialScale;
-    private float _initialPositionX;
+
     private Animator _animator;
     private int _moving = Animator.StringToHash("Moving");
 
@@ -32,7 +32,6 @@ public class Patrol : MonoBehaviour
         _initialScale = transform.localScale;
         _animator = GetComponent<Animator>();
         var position = transform.position;
-        _initialPositionX = position.x;
         _rightPoint = position + Vector3.right * _rightEdge;
         _leftPoint = position + Vector3.left * _leftEdge;
     }
@@ -40,6 +39,7 @@ public class Patrol : MonoBehaviour
     private void Update()
     {
         _isCoroutineNull = _waitCoroutine == null;
+        _isReachedPatrolPoint = IsReachedPatrolPoint(_currentDirection);
         
         if (_isReachedPatrolPoint == false)
         {
@@ -57,10 +57,6 @@ public class Patrol : MonoBehaviour
                 _waitCoroutine = null;
             }
         }
-
-        // =======================DEBUG ZONE=======================
-        _isReachedPatrolPoint = IsReachedPatrolPoint(_currentDirection);
-        // =======================DEBUG ZONE=======================
     }
 
     private void Move(int direction)

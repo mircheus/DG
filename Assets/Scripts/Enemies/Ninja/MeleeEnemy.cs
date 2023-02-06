@@ -6,6 +6,7 @@ using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
+[RequireComponent(typeof(Patrol))]
 public class MeleeEnemy : MonoBehaviour
 {
     [SerializeField] private float _attackCooldown;
@@ -20,8 +21,15 @@ public class MeleeEnemy : MonoBehaviour
     private float _cooldownTimer = Mathf.Infinity;
     private Vector2 _colliderOffset;
     private Animator _animator;
-    private EnemyPatrol _enemyPatrol;
+    private Patrol _patrol;
     private bool _isAlive = true;
+    private Coroutine _attackCooldownCoroutine;
+    private int _meleeAttack = Animator.StringToHash("MeleeAttack");
+    
+    [Header("Debug Variables________________________________/")]
+    [SerializeField] private bool _isPlayerInSight;
+    [SerializeField] private bool _isCoroutineFinished = false;
+    [SerializeField] private bool _isAbleToAttack = true;
 
     private void OnEnable()
     {
@@ -36,38 +44,76 @@ public class MeleeEnemy : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _enemyPatrol = GetComponentInParent<EnemyPatrol>();
+        _patrol = GetComponentInParent<Patrol>();
     }
     
     private void Update()
     {
-        _cooldownTimer += Time.deltaTime;
+        // ===================Вариант через Timer===================
+        // _cooldownTimer += Time.deltaTime;
+        //
+        // if (PlayerInSight())
+        // {
+        //     if (_cooldownTimer >= _attackCooldown)
+        //     {
+        //         _cooldownTimer = 0;
+        //         _animator.SetTrigger(_meleeAttack);
+        //     }
+        // }
+        // ===================Вариант через Timer===================
         
+        // ===================Вариант через Timer EDITED===================
+        // _cooldownTimer += Time.deltaTime;
+        
+        // if (PlayerInSight())
+        // {
+        //     _animator.SetTrigger(_meleeAttack);
+        // }
+        // ===================Вариант через Timer EDITED===================
+
+        // ===================Вариант через корутину===================
         if (PlayerInSight())
         {
-            if (_cooldownTimer >= _attackCooldown)
+            if (_isAbleToAttack && _attackCooldownCoroutine == null) 
             {
-                _cooldownTimer = 0;
-                _animator.SetTrigger("MeleeAttack");
-            }
-        }
-
-        if (_enemyPatrol != null)
-        {
-            if (_isAlive)
-            {
-                _enemyPatrol.enabled = !PlayerInSight();
+                _animator.SetTrigger(_meleeAttack);
+                _attackCooldownCoroutine = StartCoroutine(CooldownAttack(_attackCooldown));
             }
             else
             {
-                _enemyPatrol.enabled = false;
+                if (_isCoroutineFinished)
+                {
+                    _attackCooldownCoroutine = null;
+                }
             }
         }
+        // ===================Вариант через корутину===================
+        if (_isAlive)
+        {
+             _patrol.enabled = !PlayerInSight();
+        }
+        else
+        {
+            _patrol.enabled = false;
+        }
+        
+        // ========================DEBUG ZONE========================
+        _isPlayerInSight = PlayerInSight();
+        // ========================DEBUG ZONE========================
     }
 
     private void OnDied()
     {
         _isAlive = false;
+    }
+
+    private IEnumerator CooldownAttack(float cooldownTime)
+    {
+        _isCoroutineFinished = false;
+        _isAbleToAttack = false;
+        yield return new WaitForSeconds(cooldownTime);
+        _isAbleToAttack = true;
+        _isCoroutineFinished = true;
     }
 
     private bool PlayerInSight()
