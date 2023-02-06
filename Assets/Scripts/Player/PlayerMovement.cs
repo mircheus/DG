@@ -71,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
     public bool IsPlayerGrounded => _isGrounded;
     public float HorizontalInputDirection => _horizontalDirectionRaw;
     
-        
     public event UnityAction WallJumped;
     public event UnityAction WallSliding;
     public event UnityAction Jumped;
