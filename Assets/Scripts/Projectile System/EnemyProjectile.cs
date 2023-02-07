@@ -11,7 +11,7 @@ public class EnemyProjectile : Projectile
         
         if (col.gameObject.TryGetComponent(out Player player))
         {
-            player.TakeDamage(_damage);
+            player.TakeDamage(Damage);
             ReturnToPool();
         }
     }

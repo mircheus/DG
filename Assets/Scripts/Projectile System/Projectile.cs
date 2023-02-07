@@ -1,18 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Projectile : MonoBehaviour
 {
-    protected float _speed;
-    protected int _damage;
-    protected Rigidbody2D _rigidbody;
+    private float _speed;
+    private int _damage;
+    private Rigidbody2D _rigidbody;
     private Vector2 _currentDirection;
 
-    public float Speed => _speed;
-    public Vector2 CurrentDirection => _currentDirection;
+    // public float Speed => _speed;
+    protected int Damage => _damage;
+    // public Vector2 CurrentDirection => _currentDirection;
 
     protected virtual void OnCollisionEnter2D(Collision2D col)
     {

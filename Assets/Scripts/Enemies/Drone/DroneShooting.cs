@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
@@ -28,6 +29,6 @@ public class DroneShooting : EnemyShooting
     
     protected override Vector2 GetDirection()
     {
-        return (_player.transform.position - _currentShootPoint.position).normalized;
+        return (_player.transform.position - currentShootPoint.position).normalized;
     }
 }

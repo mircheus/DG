@@ -9,7 +9,7 @@ public class ProjectilePool : MonoBehaviour
     [SerializeField] private GameObject _container;
     [SerializeField] private int _capacity;
     
-    private Queue<Projectile> _pool = new Queue<Projectile>();
+    private readonly Queue<Projectile> _pool = new Queue<Projectile>();
 
     protected void Initialize(Projectile prefab, float speed, int damage)
     {

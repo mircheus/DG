@@ -7,11 +7,11 @@ using UnityEngine.Events;
 [RequireComponent(typeof(FlashEffect))]
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected int _maxHealth;
+    [SerializeField] private int _maxHealth;
     
     private EnemyDisabler _enemyDisabler;
-    protected FlashEffect _damageFx;
-    protected int _currentHealth;
+    private FlashEffect _damageFx;
+    private int _currentHealth;
     
     public event UnityAction Died;
     public event UnityAction Hitted;

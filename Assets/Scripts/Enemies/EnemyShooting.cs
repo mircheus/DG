@@ -7,17 +7,19 @@ using UnityEngine.Events;
 [RequireComponent(typeof(PlayerDetection))]
 public class EnemyShooting : ProjectilePool
 {
-    [SerializeField] protected Transform _currentShootPoint;
-    [SerializeField] protected Projectile _projectilePrefab;
-    [SerializeField] protected float _projectileSpeed;
-    [SerializeField] protected int _damage;
-    [SerializeField] protected PlayerDetection _detector;
-    [SerializeField] protected float _shootPauseDuration;
-    [SerializeField] protected ParticleSystem _shootFX;
+    [SerializeField] private Transform _currentShootPoint;
+    [SerializeField] private Projectile _projectilePrefab;
+    [SerializeField] private float _projectileSpeed;
+    [SerializeField] private int _damage;
+    [SerializeField] private PlayerDetection _detector;
+    [SerializeField] private float _shootPauseDuration;
+    [SerializeField] private ParticleSystem _shootFX;
 
-    protected Coroutine _firingCoroutine;
-    protected bool _isPlayerDetected = false;
-    protected bool _isFiring = true;
+    private Coroutine _firingCoroutine;
+    private bool _isPlayerDetected = false;
+    private bool _isFiring = true;
+
+    protected Transform currentShootPoint => _currentShootPoint;
 
     public event UnityAction Shooted;
 
@@ -51,7 +53,7 @@ public class EnemyShooting : ProjectilePool
         }
     }
 
-    protected void ShootProjectile(Vector2 shootDirection)
+    private void ShootProjectile(Vector2 shootDirection)
     {
         if (TryGetProjectile(out Projectile projectile))
         {
@@ -63,7 +65,7 @@ public class EnemyShooting : ProjectilePool
         }
     }
 
-    protected IEnumerator Firing()
+    private IEnumerator Firing()
     {
         var waitFor = new WaitForSeconds(_shootPauseDuration);
 

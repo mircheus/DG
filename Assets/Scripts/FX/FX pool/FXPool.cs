@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class FXPool : MonoBehaviour
 {
-    [SerializeField] protected int _capacity;
-    [SerializeField] protected FX _fx;
+    [SerializeField] private int _capacity;
+    [SerializeField] private FX _fx;
     
     private GameObject _container;
-    protected Queue<FX> _pool;
+    private Queue<FX> _pool;
     
     private void Start()
     {
