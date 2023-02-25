@@ -39,6 +39,7 @@ public class Projectile : MonoBehaviour
     public void SetDirection(Vector2 direction)
     {
         _currentDirection = direction;
+        // transform.rotation = Quaternion.LookRotation(_currentDirection);
     }
 
     private void Move()
