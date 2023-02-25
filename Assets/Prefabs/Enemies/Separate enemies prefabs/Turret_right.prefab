@@ -275,13 +275,13 @@ MonoBehaviour:
   _container: {fileID: 0}
   _capacity: 10
   _currentShootPoint: {fileID: 7026000607421545460}
-  _projectilePrefab: {fileID: 8940426276466058518, guid: daedefc04b46641e283e890b4f809df8, type: 3}
+  _projectilePrefab: {fileID: 8940426276466058518, guid: 680b206d533a8f44e8bd740bcfbdfe03, type: 3}
   _projectileSpeed: 14
   _damage: 1
   _detector: {fileID: 7026000608453709123}
   _shootPauseDuration: 0.5
   _shootFX: {fileID: 4307346512412833282}
-  _shootSide: 0
+  _shootSide: 1
 --- !u!82 &7026000608453709121
 AudioSource:
   m_ObjectHideFlags: 0
@@ -398,7 +398,7 @@ MonoBehaviour:
   _explosionVolume: 0.4
   _hitSound: {fileID: 8300000, guid: b1793e9ce7cbded4bb7e10c1b162a143, type: 3}
   _hitVolume: 0.1
-  _turretShooting: {fileID: 0}
+  _turretShooting: {fileID: 3744069115982048910}
   _turret: {fileID: 7026000608453709122}
 --- !u!1001 &7026000607664120720
 PrefabInstance:

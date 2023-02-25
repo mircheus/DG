@@ -38,7 +38,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3483948992188274486}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 23.85, y: 2.03, z: 0.18914242}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ceedce1539441f4d968d073603c6e5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 12
+  _maxHealth: 3
 --- !u!114 &6374941243200842722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   _container: {fileID: 0}
   _capacity: 10
   _currentShootPoint: {fileID: 1593929950954408979}
-  _projectilePrefab: {fileID: 8940426276466058518, guid: daedefc04b46641e283e890b4f809df8, type: 3}
+  _projectilePrefab: {fileID: 8940426276466058518, guid: d2e301f54e35d5748a21be80c921e5cf, type: 3}
   _projectileSpeed: 16
   _damage: 1
   _detector: {fileID: 3367305776495846069}
@@ -231,7 +231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963e44e84112a544db957583f3c1d08f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _aiPath: {fileID: 4874064871163605408}
 --- !u!58 &3367305776495846068
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -452,18 +451,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5350c71adbe77b41a55d4494ff4ef73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootSound: {fileID: 8300000, guid: 1cdd0a69543f57b4e8a2a33de2f778f9, type: 3}
+  _shootSound: {fileID: 8300000, guid: 321b884ddcbb12041860314b20431bb7, type: 3}
   _shootVolume: 0.1
   _flySound: {fileID: 0}
   _flyVolume: 0
-  _alarmSound: {fileID: 0}
-  _alarmVolume: 0
-  _explosionSound: {fileID: 8300000, guid: 19265c495f70b5d45a4df3e5d9309f04, type: 3}
+  _alarmSound: {fileID: 8300000, guid: 11caf862a0c8e534b953f6c68d2e7b32, type: 3}
+  _alarmVolume: 0.3
+  _explosionSound: {fileID: 8300000, guid: aae24eb1904b72f45909b5281d375a42, type: 3}
   _explosionVolume: 0.6
-  _hitSound: {fileID: 8300000, guid: 90a994d1d4b50974e962abe6e5d0c427, type: 3}
+  _hitSound: {fileID: 8300000, guid: b1793e9ce7cbded4bb7e10c1b162a143, type: 3}
   _hitVolume: 0.3
-  _enemyDroneShooting: {fileID: 0}
-  _playerDetection: {fileID: 0}
+  _droneShooting: {fileID: 6374941243200842722}
+  _playerDetection: {fileID: 3367305776495846069}
   _drone: {fileID: 4874064871163605438}
 --- !u!1 &3483948992760212698
 GameObject:
@@ -515,7 +514,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 4
+  m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000

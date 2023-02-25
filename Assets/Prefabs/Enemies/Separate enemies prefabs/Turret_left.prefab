@@ -244,7 +244,7 @@ MonoBehaviour:
   _container: {fileID: 0}
   _capacity: 10
   _currentShootPoint: {fileID: 4296832516852008842}
-  _projectilePrefab: {fileID: 8940426276466058518, guid: daedefc04b46641e283e890b4f809df8, type: 3}
+  _projectilePrefab: {fileID: 8940426276466058518, guid: 1756d0297e8b42141aa02eedcb3120cf, type: 3}
   _projectileSpeed: 14
   _damage: 1
   _detector: {fileID: 5084553524750929913}
@@ -365,8 +365,8 @@ MonoBehaviour:
   _turnVolume: 0
   _explosionSound: {fileID: 8300000, guid: c93d92931e86a6745ad595747825d8d0, type: 3}
   _explosionVolume: 0.4
-  _hitSound: {fileID: 8300000, guid: 90a994d1d4b50974e962abe6e5d0c427, type: 3}
-  _hitVolume: 0.2
+  _hitSound: {fileID: 8300000, guid: b1793e9ce7cbded4bb7e10c1b162a143, type: 3}
+  _hitVolume: 0.1
   _turretShooting: {fileID: 1687846177}
   _turret: {fileID: 1346349003173157339}
 --- !u!1 &6162134915697847249
@@ -393,7 +393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6162134915697847249}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.353, y: 0.294, z: -0.011263905}
+  m_LocalPosition: {x: -0.353, y: 0.335, z: -0.011263905}
   m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
