@@ -34,6 +34,11 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
+
+    private void Foo()
+    {
+        
+    }
     
     protected void OnParticleCollision(GameObject other)
     {

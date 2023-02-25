@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
@@ -32,13 +33,13 @@ public class MeleeAttack : MonoBehaviour
     {
         _enemy.Died -= OnDied;
     }
-    
-    private void Awake()
+
+    private void Start()
     {
         _animator = GetComponent<Animator>();
         _patrol = GetComponentInParent<Patrol>();
     }
-    
+
     private void Update()
     {
         if (PlayerInSight())

@@ -26,6 +26,7 @@ public class Drone : Enemy
     {
         _spriteRenderer.enabled = false;
         _light.intensity = 0;
+        _light.enabled = false;
         _droneShooting.StopFiring();
         _rigidbody.simulated = false;
         Exploded?.Invoke(transform.position);
