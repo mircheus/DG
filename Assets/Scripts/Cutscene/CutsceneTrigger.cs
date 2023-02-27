@@ -11,14 +11,14 @@ public class CutsceneTrigger : MonoBehaviour
 {
     [SerializeField] private PlayableDirector _director;
 
-    public event UnityAction cutsceneStarted;
-
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.TryGetComponent(out Player player))
         {
             _director.Play();
-            cutsceneStarted?.Invoke();
+            player.GetComponent<PlayerMovement>().enabled = false;
+            player.GetComponent<AnimationSwitcher>().enabled = false;
+            player.GetComponent<PlayerShooting>().enabled = false;
         }
     }
 }

@@ -640,7 +640,7 @@ MonoBehaviour:
   _y: 0
   _colorChangeDuration: 0
   _introDelay: 0
-  _diskoteka: 0
+  _isDisco: 0
 --- !u!114 &1922512443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,9 +678,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e7cb738171ba1204f9ca6922d6f875c1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dac96f04df71cb74eb866e586b1417e7, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
